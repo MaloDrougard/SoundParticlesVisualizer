@@ -11,7 +11,8 @@ public class AudioAnalyzer : MonoBehaviour {
     public int samplesSize = 512;
 
     public Transform dancerPrefabT = null;
-    public Dancer[] dancers;  
+    public Dancer[] dancers;
+
 
 	// Use this for initialization
 	void Start () {
@@ -27,20 +28,23 @@ public class AudioAnalyzer : MonoBehaviour {
         }
 
         Vector3 tempPostion = Vector3.zero;
-        Vector3 increment = new Vector3(dancerPrefab.GetWidth(), dancerPrefab.GetHeight()/2f , 0);
+        Quaternion tempRotation = Quaternion.Euler(Vector3.zero);
+
         for( int i = 0; i < samplesSize; i++)
         {
-            dancers[i] = CreateDancer(tempPostion);
-            tempPostion += increment;
+            tempRotation = Quaternion.Euler(0, 0, i * 360 / samplesSize); 
+            dancers[i] = CreateDancer(tempPostion, tempRotation);
+
         }
 
     }
 	
-    private Dancer CreateDancer(Vector3 position)
+    private Dancer CreateDancer(Vector3 position, Quaternion rotation)
     {
         Transform newDancerT = Instantiate(dancerPrefabT);
         newDancerT.SetParent(this.transform);
         newDancerT.transform.position = position;
+        newDancerT.transform.rotation = rotation; 
 
         return newDancerT.GetComponent<Dancer>(); 
     }
@@ -52,7 +56,7 @@ public class AudioAnalyzer : MonoBehaviour {
       
         for( int i = 0; i < samplesSize; i++)
         {
-            dancers[i].SetHeight(samples[i] * 10 + 0.1f); 
+            dancers[i].SetAmplitude(samples[i] * 20 + 0.1f); 
         }
 	}
     
