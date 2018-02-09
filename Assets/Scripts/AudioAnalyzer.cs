@@ -7,19 +7,18 @@ using UnityEngine;
 public class AudioAnalyzer : MonoBehaviour {
 
     AudioSource audioSource = null;
-    public float[] samples;
-    public int samplesSize = 512;
+    public float[] tempSamples;
+    public int samplesSize = 64;
 
     public Transform dancerPrefabT = null;
-    public Dancer[] dancers;
+    List<Transform> circles;
 
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         audioSource = this.GetComponent<AudioSource>();
-        samples = new float[samplesSize];
-        dancers = new Dancer[samplesSize];
+        circles = new List<Transform>();
+        tempSamples = new float[samplesSize]; 
 
         Dancer dancerPrefab = dancerPrefabT.GetComponent<Dancer>();
         if( dancerPrefab == null)
@@ -29,35 +28,62 @@ public class AudioAnalyzer : MonoBehaviour {
 
         Vector3 tempPostion = Vector3.zero;
         Quaternion tempRotation = Quaternion.Euler(Vector3.zero);
+        
 
-        for( int i = 0; i < samplesSize; i++)
-        {
-            tempRotation = Quaternion.Euler(0, 0, i * 360 / samplesSize); 
-            dancers[i] = CreateDancer(tempPostion, tempRotation);
-
-        }
 
     }
-	
-    private Dancer CreateDancer(Vector3 position, Quaternion rotation)
+
+    private Transform CreateCircle(float[] samples )
+    {
+        Transform circleT = new GameObject().transform;
+        circleT.SetParent(this.transform);
+        
+        Vector3 tempPostion = Vector3.zero;
+        Quaternion tempRotation = Quaternion.Euler(Vector3.zero);
+
+        for (int i = 0; i < samples.Length ; i++)
+        {
+            tempRotation = Quaternion.Euler(0, 0, i * 360f / (float)samplesSize);
+            CreateDancer(tempPostion, tempRotation, circleT, samples[i] * 30 + 0.3f );
+        }
+
+        return circleT; 
+
+    }
+
+    private Dancer CreateDancer(Vector3 position, Quaternion rotation, Transform parent, float ampli)
     {
         Transform newDancerT = Instantiate(dancerPrefabT);
-        newDancerT.SetParent(this.transform);
+        newDancerT.SetParent(parent);
         newDancerT.transform.position = position;
-        newDancerT.transform.rotation = rotation; 
+        newDancerT.transform.rotation = rotation;
+
+        Dancer dancer = newDancerT.GetComponent<Dancer>();
+        dancer.SetBAseLocalPosition(new Vector3(-10, 0, 0));
+        dancer.SetDoubleAmplitude(ampli); 
 
         return newDancerT.GetComponent<Dancer>(); 
     }
 
-	// Update is called once per frame
-	void Update () {
-        audioSource.GetSpectrumData(samples, 0, FFTWindow.Blackman);
-
-      
-        for( int i = 0; i < samplesSize; i++)
+    // Update is called once per frame
+    void Update()
+    {
+        if (circles.Count >= 100)
         {
-            dancers[i].SetAmplitude(samples[i] * 20 + 0.1f); 
+            Transform c = circles[0];
+            circles.RemoveAt(0);
+            Destroy(c.gameObject);
         }
-	}
+
+        foreach (Transform c in circles)
+        {
+            c.position += new Vector3(0, 0, 1);
+            c.Rotate(new Vector3(0, 0, 9f * 360f / (float)samplesSize)); 
+        }
+
+        audioSource.GetSpectrumData(tempSamples, 0, FFTWindow.Blackman);
+        Transform newCircle = CreateCircle(tempSamples);
+        circles.Add(newCircle);
+    }
     
 }
