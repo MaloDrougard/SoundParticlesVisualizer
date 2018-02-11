@@ -8,10 +8,21 @@ public class AudioAnalyzer : MonoBehaviour {
 
     AudioSource audioSource = null;
     public float[] tempSamples;
+
     public int samplesSize ;
+    public float rotationStep;
+    public float magnitudeAmplifier;
+    public float minMagnitude;
+    public int numberOfCircles;
+    public float circleStep;
 
     public Transform dancerPrefabT = null;
     List<Transform> circles;
+
+
+
+
+
 
     // Use this for initialization
     void Start () {
@@ -47,7 +58,7 @@ public class AudioAnalyzer : MonoBehaviour {
         for (int i = 0; i < samples.Length ; i++)
         {
             tempRotation = Quaternion.Euler(0, 0, i * 360f / (float)samplesSize);
-            CreateDancer(tempPostion, tempRotation, circleT, samples[i] * 30 + 0.3f );
+            CreateDancer(tempPostion, tempRotation, circleT, samples[i] * magnitudeAmplifier + minMagnitude );
         }
 
         return circleT; 
@@ -71,7 +82,7 @@ public class AudioAnalyzer : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (circles.Count >= 30)
+        if (circles.Count >= numberOfCircles)
         {
             Transform c = circles[0];
             circles.RemoveAt(0);
@@ -80,8 +91,9 @@ public class AudioAnalyzer : MonoBehaviour {
 
         foreach (Transform c in circles)
         {
-            c.position += new Vector3(0, 0, 1);
-            //c.Rotate(new Vector3(0, 0, 9f * 360f / (float)samplesSize)); 
+            c.position += new Vector3(0, 0, circleStep);
+          
+            c.Rotate(new Vector3(0, 0, rotationStep * 360f / (float)samplesSize));
         }
 
         audioSource.GetSpectrumData(tempSamples, 0, FFTWindow.Blackman);

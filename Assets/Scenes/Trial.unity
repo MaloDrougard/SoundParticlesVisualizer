@@ -317,6 +317,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempSamples: []
   samplesSize: 64
+  rotationStep: -0.6
+  magnitudeAmplifier: 40
+  minMagnitude: 0.1
+  numberOfCircles: 40
+  circleStep: 3
   dancerPrefabT: {fileID: 4040561539465722, guid: 37cefa27b8e38ae44b4d9c8019b22921,
     type: 2}
 --- !u!1 &1862991285
