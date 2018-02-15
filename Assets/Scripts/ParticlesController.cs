@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ParticlesController : MonoBehaviour {
 
+    // The particules system managed by this controller
     public ParticleSystem particles = null;
-
 
     private ParticleSystem.EmissionModule emission;
     private ParticleSystem.VelocityOverLifetimeModule velocity; 
@@ -13,34 +13,15 @@ public class ParticlesController : MonoBehaviour {
     public Vector3 acctualScale = new Vector3(1, 1, 1);
     
 
-	// Use this for initialization
 	void Start () {
        emission = particles.emission;
-        velocity = particles.velocityOverLifetime; 
+       velocity = particles.velocityOverLifetime; 
     }
 	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown("e"))
-        {
-            this.ChangeEmmision(10);
-            this.ChangeVelocity(10); 
-        }
-        if(Input.GetKey("g"))
-        {
-            acctualScale += Time.deltaTime * new Vector3(1, 1, 1);
-            this.Scale(acctualScale); 
-        }
-        if (Input.GetKey("v"))
-        {
-            acctualScale -= Time.deltaTime * new Vector3(1, 1, 1);
-            this.Scale(acctualScale);
-        }
-
-    }
 
 
 
+    
     public void ChangeEmmision(float newEmissionRate)
     {
         emission.rateOverTime = new ParticleSystem.MinMaxCurve(newEmissionRate);
@@ -56,11 +37,7 @@ public class ParticlesController : MonoBehaviour {
 
     }
 
-    public void Scale(Vector3 scale)
-    {
-        particles.transform.localScale = scale ;
 
-    }
 
 }
 

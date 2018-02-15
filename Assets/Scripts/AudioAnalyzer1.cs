@@ -13,10 +13,13 @@ public class AudioAnalyzer1 : MonoBehaviour
     public int samplesSize;
     public float[] tempSamples;
 
-    public float currentGlobalMagnitude;
-    public float magnitudeAmplifier;
-    public float minMagnitude;
+    public float currentGlobalMagnitude = -1;
+    public float magnitudeAmplifier = 0;
+    public float minMagnitude = 1;
 
+    public float velocityFactor = 1 ;
+    public float baseVelocity = 0.5f; 
+    public float emissionFactor = 1; 
 
     public ParticlesController particlesC;
 
@@ -47,8 +50,8 @@ public class AudioAnalyzer1 : MonoBehaviour
         {
             currentGlobalMagnitude += s * magnitudeAmplifier;
         }
-        particlesC.ChangeVelocity(currentGlobalMagnitude);
-        particlesC.ChangeEmmision(currentGlobalMagnitude);
+        particlesC.ChangeVelocity(baseVelocity + velocityFactor * currentGlobalMagnitude);
+        particlesC.ChangeEmmision(emissionFactor * currentGlobalMagnitude);
 
 
     }
