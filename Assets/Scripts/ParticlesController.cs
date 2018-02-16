@@ -7,6 +7,9 @@ public class ParticlesController : MonoBehaviour {
     // The particules system managed by this controller
     public ParticleSystem particles = null;
 
+    public float velocityFactor = 1;
+    public float emissionFactor = 1; 
+
     private ParticleSystem.EmissionModule emission;
     private ParticleSystem.VelocityOverLifetimeModule velocity; 
 
@@ -19,22 +22,15 @@ public class ParticlesController : MonoBehaviour {
     }
 	
 
-
-
-    
     public void ChangeEmmision(float newEmissionRate)
     {
-        emission.rateOverTime = new ParticleSystem.MinMaxCurve(newEmissionRate);
-
+        emission.rateOverTime = new ParticleSystem.MinMaxCurve( emissionFactor * newEmissionRate);
     }
+
 
     public void ChangeVelocity(float newVelocityMultiplier)
     {
-
-        //var curve = new AnimationCurve(new Keyframe(1, 0), new Keyframe(0.1f, 1));
-        velocity.speedModifier = new ParticleSystem.MinMaxCurve( newVelocityMultiplier)  ;
-
-
+        velocity.speedModifier = new ParticleSystem.MinMaxCurve(velocityFactor *  newVelocityMultiplier)  ;
     }
 
 
