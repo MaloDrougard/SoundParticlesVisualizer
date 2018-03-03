@@ -12,11 +12,22 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     public int samplesSize;
     public float[] tempSamples;
-   
 
+
+    public bool useStaticVelocity = false;
+    public bool useStaticEmission = false;
+    public bool useStaticSize = false; 
+
+
+    // used when relative to sound is used
     public float globalVelocityFactor = 1;
     public float globalEmissionFactor = 1;
+    public float globalSizeFactor = 1;
 
+    // used when static is used
+    public float globalVelocityStatic = 1; 
+    public float globalSizeStatic = 1;
+    public float globalEmissionStatic = 1; 
 
 
 
@@ -67,12 +78,95 @@ public class AudioAnalyzer1 : MonoBehaviour
     {
         
         audioSource.GetSpectrumData(tempSamples, 0, FFTWindow.Blackman);
-
+        flatSoundSample(); 
         UpdateBasicDrawer();
-        UpdateAllSuns(); 
 
+        if (useStaticSize)
+        {
+            SetSunsSizeStatic();
+        } else
+        {
+            SetSunsSizeRelativeToSound();
+        }
+
+        if (useStaticEmission)
+        {
+            SetSunsEmissionStatic();
+        }
+        else
+        {
+            SetSunsEmissionRelativeToSound();
+        }
+
+        if (useStaticVelocity)
+        {
+            SetSunsVelocityStatic();   
+        }
+        else
+        {
+            SetSunsVelocityRelativeToSound();
+        }
+ 
+    }
+
+
+    private  void flatSoundSample()
+    {
+        int modulo = ((samplesSize / 8) * 7);
+        for (int i = 0; i <samplesSize; i++)
+        {
+            
+            tempSamples[i] = ((i%modulo)+ 1)  * tempSamples[i % modulo ]; // we do not take realy high frequncy because never happend
+        }
+    }
+
+
+    private void SetSunsSizeStatic()
+    {
+        ParticlesController p;
+        string name = "";
+        for (int i = 1; i < 9; i++)
+        {
+            name = "Sun" + i;
+            p = systems[name];
+
+            p.ChangeSize(globalSizeStatic);
+        }
 
     }
+
+
+    private void SetSunsEmissionStatic()
+    {
+        ParticlesController p;
+        string name = "";
+        for (int i = 1; i < 9; i++)
+        {
+            name = "Sun" + i;
+            p = systems[name];
+
+            p.ChangeEmision(globalEmissionStatic);
+        }
+
+    }
+
+
+    private void SetSunsVelocityStatic()
+    {
+        ParticlesController p;
+        string name = "";
+        for (int i = 1; i < 9; i++)
+        {
+            name = "Sun" + i;
+            p = systems[name];
+
+            p.ChangeVelocity(globalVelocityStatic);
+        }
+
+    }
+
+
+
 
     private void UpdateBasicDrawer()
     {
@@ -83,7 +177,30 @@ public class AudioAnalyzer1 : MonoBehaviour
     }
 
 
-    private void UpdateAllSuns()
+
+    private void SetSunsSizeRelativeToSound()
+    {
+
+        ParticlesController p;
+        string name = "";
+        for (int i = 1; i < 9; i++)
+        {
+            name = "Sun" + i;
+            p = systems[name];
+
+            float value = 0;
+            for (int w = (i - 1) * samplesSize / 8; w < ((i - 1) * samplesSize / 8) + 8; w++)
+            {
+                value = tempSamples[w];
+            }
+
+            p.ChangeSize(globalSizeFactor * value);
+
+        }
+    }
+
+
+    private void SetSunsVelocityRelativeToSound()
     {
 
         ParticlesController p;
@@ -98,47 +215,34 @@ public class AudioAnalyzer1 : MonoBehaviour
             {
                 value = tempSamples[w];
             }
-            Debug.Log(name +" velo " + globalVelocityFactor* value);
-            Debug.Log(name + " Emission " + globalEmissionFactor * value);
-            p.ChangeVelocity(globalVelocityFactor * value);
-            p.ChangeVelocity(globalEmissionFactor * value);
 
+            p.ChangeVelocity(globalVelocityFactor * value);
 
         }
-
-
     }
 
 
-    //private void UpdateSun1()
-    //{
-    //    ParticlesController p = systems["Sun1"];
+    private void SetSunsEmissionRelativeToSound()
+    {
 
-    //    float v = 0;
-    //    for (int i = 0; i < 8; i++)
-    //    {
-    //        v = tempSamples[i];
-    //    }
-        
-    //    p.ChangeVelocity(globalVelocityFactor  * v);
-    //    p.ChangeEmmision(globalEmissionFactor * v);
-    //}
+        ParticlesController p;
+        string name = "";
+        for (int i = 1; i < 9; i++)
+        {
+            name = "Sun" + i;
+            p = systems[name];
 
+            float value = 0;
+            for (int w = (i - 1) * samplesSize / 8; w < ((i - 1) * samplesSize / 8) + 8; w++)
+            {
+                value = tempSamples[w];
+            }
 
-    //private void UpdateSun2()
-    //{
-    //    ParticlesController p = systems["Sun2"];
+            p.ChangeEmision(globalEmissionFactor * value);
 
-    //    float v = 0;
-    //    for (int i = 7; i < 16; i++)
-    //    {
-    //        v = tempSamples[i];
-    //    }
+        }
+    }
 
-    //    p.ChangeVelocity(globalVelocityFactor * v);
-    //    p.ChangeEmmision(globalEmissionFactor * v);
-
-    //}
 
 
 

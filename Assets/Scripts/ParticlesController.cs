@@ -8,32 +8,39 @@ public class ParticlesController : MonoBehaviour {
     public ParticleSystem particles = null;
 
     public float velocityFactor = 1;
-    public float emissionFactor = 1; 
+    public float emissionFactor = 1;
+    public float sizeFactor = 1; 
 
     private ParticleSystem.EmissionModule emission;
-    private ParticleSystem.VelocityOverLifetimeModule velocity; 
-
-    public Vector3 acctualScale = new Vector3(1, 1, 1);
+    private ParticleSystem.VelocityOverLifetimeModule velocity;
+    private ParticleSystem.SizeOverLifetimeModule size; 
     
 
 	void Start () {
        emission = particles.emission;
-       velocity = particles.velocityOverLifetime; 
+       velocity = particles.velocityOverLifetime;
+       size = particles.sizeOverLifetime; 
     }
 	
 
-    public void ChangeEmmision(float newEmissionRate)
+    public void ChangeEmision(float newEmissionRate)
     {
+        //Debug.Log( "Object: " + this.gameObject.name + " -> new emission rate:  " + newEmissionRate * emissionFactor); 
         emission.rateOverTime = new ParticleSystem.MinMaxCurve( emissionFactor * newEmissionRate);
     }
 
 
     public void ChangeVelocity(float newVelocityMultiplier)
     {
+        // Debug.Log("Object: " + this.gameObject.name + " -> new velocity rate:  " + newVelocityMultiplier * velocityFactor );
         velocity.speedModifier = new ParticleSystem.MinMaxCurve(velocityFactor *  newVelocityMultiplier)  ;
     }
 
 
+    public void ChangeSize(float newSize)
+    {
+        size.size = new ParticleSystem.MinMaxCurve(sizeFactor * newSize);
+    }
 
 }
 
