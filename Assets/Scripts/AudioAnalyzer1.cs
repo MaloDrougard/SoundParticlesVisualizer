@@ -16,7 +16,7 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     public bool useStaticVelocity = false;
     public bool useStaticEmission = false;
-    public bool useStaticSize = false; 
+    public bool useStaticSize = false;
 
 
     // used when relative to sound is used
@@ -25,14 +25,30 @@ public class AudioAnalyzer1 : MonoBehaviour
     public float globalSizeFactor = 1;
 
     // used when static is used
-    public float globalVelocityStatic = 1; 
+    public float globalVelocityStatic = 1;
     public float globalSizeStatic = 1;
-    public float globalEmissionStatic = 1; 
+    public float globalEmissionStatic = 1;
 
 
+    public List<string> sunsName = new List<string>(
+        new string[] { "Sun1", "Sun2", "Sun3", "Sun4", "Sun5", "Sun6", "Sun7", "Sun8", });
 
-    public Dictionary<string, ParticlesController> systems = new Dictionary<string, ParticlesController>();
-    
+    public Dictionary<string, int> sunsToValues = new Dictionary<string, int>() {
+        
+        {"Sun1", 0},
+        {"Sun2", 1},
+        {"Sun3", 2},
+        {"Sun4", 3},
+        {"Sun5", 4},
+        {"Sun6", 5},
+        {"Sun7", 4},
+        {"Sun8", 0}
+    };
+
+    public Dictionary<string, ParticlesController> sunsSystems = new Dictionary<string, ParticlesController>();
+
+    // collect the values used by the particules system 
+    public float[] soundCapters = new float[8]; 
 
     // use in UI 
     public SoundDrawer basicDrawer = null;
@@ -43,29 +59,36 @@ public class AudioAnalyzer1 : MonoBehaviour
     void Start()
     {
 
-        string search = "";
         GameObject finded = null; 
-        for (int i = 1; i < 9; i++)
+        foreach (string name in sunsName)
         {
-            search = "Sun" + i; 
-            finded = GameObject.Find(search);
-            if(finded == null)
+            
+            finded = GameObject.Find(name);
+            if (finded == null)
             {
-                Debug.LogWarning("AUDIOANALYZER1: Start(): " + search + " gameobject not found!");
+                Debug.LogWarning("AUDIOANALYZER1: Start(): " + name + " gameobject not found!");
 
-            }else
-            {
-                systems.Add(search, finded.GetComponent<ParticlesController>());
             }
-            finded = null; 
+            else
+            {
+                sunsSystems.Add(name, finded.GetComponent<ParticlesController>());
+            }
+            finded = null;
         }
+
+
 
      
         audioSource = this.GetComponent<AudioSource>();
-        audioSource.clip = Microphone.Start("", true, 1024, 44100); // FIXEME: need infinty
+        audioSource.clip = Microphone.Start("", true, 100000, 44100); // FIXEME: need infinty
         audioSource.Play();
 
         tempSamples = new float[samplesSize];
+
+        foreach(var p in sunsSystems.Values)
+        {
+            //p.ChangeColor(); 
+        }
 
     }
 
@@ -78,7 +101,7 @@ public class AudioAnalyzer1 : MonoBehaviour
     {
         
         audioSource.GetSpectrumData(tempSamples, 0, FFTWindow.Blackman);
-        flatSoundSample(); 
+        SetSoundCapters(); 
         UpdateBasicDrawer();
 
         if (useStaticSize)
@@ -110,26 +133,36 @@ public class AudioAnalyzer1 : MonoBehaviour
     }
 
 
-    private  void flatSoundSample()
+    private  void SetSoundCapters()
     {
         int modulo = ((samplesSize / 8) * 7);
+        
+        // flat a little bit
         for (int i = 0; i <samplesSize; i++)
         {
             
-            tempSamples[i] = ((i%modulo)+ 1)  * tempSamples[i % modulo ]; // we do not take realy high frequncy because never happend
+            tempSamples[i] = (i + 1)  * tempSamples[i]; // we do not take realy high frequncy because never happend
         }
+
+        for(int i = 0; i < 8; i++)
+        {
+            soundCapters[i] = 0; 
+        }
+
+        int n = 0;
+        for (int j = 0; j < samplesSize; j++)
+        {
+            n = (int) Mathf.Floor(j / 8);
+            soundCapters[ n ] += tempSamples[ j ];
+        }
+
     }
 
 
     private void SetSunsSizeStatic()
     {
-        ParticlesController p;
-        string name = "";
-        for (int i = 1; i < 9; i++)
+        foreach( ParticlesController p in sunsSystems.Values)
         {
-            name = "Sun" + i;
-            p = systems[name];
-
             p.ChangeSize(globalSizeStatic);
         }
 
@@ -138,13 +171,8 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     private void SetSunsEmissionStatic()
     {
-        ParticlesController p;
-        string name = "";
-        for (int i = 1; i < 9; i++)
+        foreach (ParticlesController p in sunsSystems.Values)
         {
-            name = "Sun" + i;
-            p = systems[name];
-
             p.ChangeEmision(globalEmissionStatic);
         }
 
@@ -153,19 +181,12 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     private void SetSunsVelocityStatic()
     {
-        ParticlesController p;
-        string name = "";
-        for (int i = 1; i < 9; i++)
+        foreach (ParticlesController p in sunsSystems.Values)
         {
-            name = "Sun" + i;
-            p = systems[name];
-
             p.ChangeVelocity(globalVelocityStatic);
         }
 
     }
-
-
 
 
     private void UpdateBasicDrawer()
@@ -177,25 +198,13 @@ public class AudioAnalyzer1 : MonoBehaviour
     }
 
 
-
     private void SetSunsSizeRelativeToSound()
     {
-
-        ParticlesController p;
-        string name = "";
-        for (int i = 1; i < 9; i++)
+        float newValue = 0;
+        foreach (var p in sunsSystems)
         {
-            name = "Sun" + i;
-            p = systems[name];
-
-            float value = 0;
-            for (int w = (i - 1) * samplesSize / 8; w < ((i - 1) * samplesSize / 8) + 8; w++)
-            {
-                value = tempSamples[w];
-            }
-
-            p.ChangeSize(globalSizeFactor * value);
-
+            newValue = globalSizeFactor * soundCapters[ sunsToValues[p.Key] ];
+            p.Value.ChangeSize( newValue );
         }
     }
 
@@ -203,20 +212,12 @@ public class AudioAnalyzer1 : MonoBehaviour
     private void SetSunsVelocityRelativeToSound()
     {
 
-        ParticlesController p;
-        string name = ""; 
-        for ( int i = 1; i < 9; i++)
+
+        float newValue = 0;
+        foreach (var p in sunsSystems)
         {
-            name = "Sun" + i; 
-            p = systems[name];
-
-            float value = 0;
-            for (int w = (i-1) * samplesSize/8 ; w <  ((i-1) * samplesSize / 8) + 8; w++)
-            {
-                value = tempSamples[w];
-            }
-
-            p.ChangeVelocity(globalVelocityFactor * value);
+            newValue = globalSizeFactor * soundCapters[sunsToValues[p.Key]];
+            p.Value.ChangeVelocity(newValue);
 
         }
     }
@@ -225,21 +226,11 @@ public class AudioAnalyzer1 : MonoBehaviour
     private void SetSunsEmissionRelativeToSound()
     {
 
-        ParticlesController p;
-        string name = "";
-        for (int i = 1; i < 9; i++)
+        float newValue = 0;
+        foreach (var p in sunsSystems)
         {
-            name = "Sun" + i;
-            p = systems[name];
-
-            float value = 0;
-            for (int w = (i - 1) * samplesSize / 8; w < ((i - 1) * samplesSize / 8) + 8; w++)
-            {
-                value = tempSamples[w];
-            }
-
-            p.ChangeEmision(globalEmissionFactor * value);
-
+            newValue = globalSizeFactor * soundCapters[sunsToValues[p.Key]];
+            p.Value.ChangeEmision(newValue);
         }
     }
 

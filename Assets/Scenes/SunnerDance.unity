@@ -181,12 +181,12 @@ Prefab:
     - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
         type: 2}
       propertyPath: globalVelocityFactor
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
         type: 2}
       propertyPath: globalEmissionFactor
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
         type: 2}
@@ -196,12 +196,12 @@ Prefab:
     - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
         type: 2}
       propertyPath: globalSizeFactor
-      value: 70
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
         type: 2}
       propertyPath: globalSizeStatic
-      value: 0.3
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
         type: 2}
@@ -221,12 +221,12 @@ Prefab:
     - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
         type: 2}
       propertyPath: globalEmissionStatic
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
         type: 2}
       propertyPath: globalVelocityStatic
-      value: 0.1
+      value: 0.26
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4eaa195ba86e93b4d8b220446ba47456, type: 2}
@@ -262,9 +262,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 252259173}
-  velocityFactor: 10
-  emissionFactor: 10
-  sizeFactor: 10
+  velocityFactor: 9
+  emissionFactor: 9
+  sizeFactor: 9
 --- !u!199 &252259172
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -381,7 +381,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1318136998
+  randomSeed: 1927390764
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -777,7 +777,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 2000
     size3D: 0
     rotation3D: 1
     gravityModifier:
@@ -3757,7 +3757,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1310342731
+  randomSeed: 521551613
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4153,7 +4153,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 2000
     size3D: 0
     rotation3D: 1
     gravityModifier:
@@ -7089,9 +7089,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 538172969}
-  velocityFactor: 10
-  emissionFactor: 10
-  sizeFactor: 10
+  velocityFactor: 17
+  emissionFactor: 15
+  sizeFactor: 15
 --- !u!199 &538172968
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -7208,7 +7208,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -574549705
+  randomSeed: -1105904034
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7604,7 +7604,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 2000
     size3D: 0
     rotation3D: 1
     gravityModifier:
@@ -10699,9 +10699,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 723743463}
-  velocityFactor: 10
-  emissionFactor: 10
-  sizeFactor: 10
+  velocityFactor: 12
+  emissionFactor: 12
+  sizeFactor: 12
 --- !u!199 &723743462
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -10818,7 +10818,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -872962335
+  randomSeed: 2091210140
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11214,7 +11214,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 2000
     size3D: 0
     rotation3D: 1
     gravityModifier:
@@ -14164,9 +14164,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 836056654}
-  velocityFactor: 10
-  emissionFactor: 10
-  sizeFactor: 10
+  velocityFactor: 8
+  emissionFactor: 8
+  sizeFactor: 8
 --- !u!199 &836056653
 ParticleSystemRenderer:
   serializedVersion: 4
@@ -14283,7 +14283,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 777505594
+  randomSeed: 2077936309
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -14679,7 +14679,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 2000
     size3D: 0
     rotation3D: 1
     gravityModifier:
@@ -15177,7 +15177,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 1
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -17748,7 +17748,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -646965571
+  randomSeed: -308547144
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -18144,7 +18144,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 2000
     size3D: 0
     rotation3D: 1
     gravityModifier:
@@ -21321,7 +21321,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 158971654
+  randomSeed: 980367518
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -21717,7 +21717,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 2000
     size3D: 0
     rotation3D: 1
     gravityModifier:
@@ -24786,7 +24786,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1606436013
+  randomSeed: -1849618979
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -25182,7 +25182,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 2000
     size3D: 0
     rotation3D: 1
     gravityModifier:
