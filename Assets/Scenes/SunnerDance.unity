@@ -584,7 +584,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -840709919
+  randomSeed: 787337735
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4358,7 +4358,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 626035065
+  randomSeed: -1593545213
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7809,7 +7809,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1105904034
+  randomSeed: 1758514586
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11890,7 +11890,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1596758377
+  randomSeed: 586196349
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -15553,7 +15553,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2077936309
+  randomSeed: 889597761
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19454,7 +19454,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -308547144
+  randomSeed: -1723140696
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -22812,7 +22812,7 @@ Camera:
     m_Bits: 1
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -23000,7 +23000,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1293009025}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 0, z: 100}
+  m_LocalPosition: {x: 1000, y: 0, z: 1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1993384418}
@@ -23170,7 +23170,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1606308647
+  randomSeed: 940009686
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -27083,7 +27083,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1849618979
+  randomSeed: -491475609
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -31134,7 +31134,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
 --- !u!224 &1993384418
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31174,7 +31174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliderValues: 1
-  toggleValues: 0
+  toggleValues: 1
 --- !u!1 &1998106206
 GameObject:
   m_ObjectHideFlags: 0
@@ -31405,7 +31405,7 @@ Prefab:
     - target: {fileID: 20117245202734908, guid: ebe214d264737524aa2e0c8c4e97d683,
         type: 2}
       propertyPath: m_TargetDisplay
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 20117245202734908, guid: ebe214d264737524aa2e0c8c4e97d683,
         type: 2}
