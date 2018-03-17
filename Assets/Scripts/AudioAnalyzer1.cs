@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 
 public class AudioAnalyzer1 : MonoBehaviour
@@ -9,8 +9,9 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     AudioSource audioSource = null;
 
-
+    
     public int samplesSize;
+    // strore samples from audio source 
     public float[] tempSamples;
 
 
@@ -20,19 +21,79 @@ public class AudioAnalyzer1 : MonoBehaviour
 
 
     // used when relative to sound is used
-    public float globalVelocityFactor = 1;
-    public float globalEmissionFactor = 1;
-    public float globalSizeFactor = 1;
+    public float globalDynamicVelocity = 1;
+    public float globalDynamicEmission = 1;
+    public float globalDynamicSize = 1;
 
     // used when static is used
-    public float globalVelocityStatic = 1;
-    public float globalSizeStatic = 1;
-    public float globalEmissionStatic = 1;
+    public float globalStaticVelocity = 1;
+    public float globalStaticSize = 1;
+    public float globalStaticEmission = 1;
+
+
+    // GUI functions, use by sliders to set this object ***************************
+
+    public void EnableStaticSize(Toggle toggle )
+    {
+        useStaticSize = toggle.isOn; 
+    }
+
+
+    public void EnableStaticVelocity(Toggle toggle)
+    {
+        useStaticVelocity = toggle.isOn;
+    }
+
+
+    public void EnableStaticEmission(Toggle toggle)
+    {
+        useStaticEmission = toggle.isOn;
+    }
+
+
+
+    public void SetStaticSize(Slider slider)
+    { 
+        this.globalStaticSize = RescaleExponential(slider.value);
+    }
+
+    public void SetDynamicSize(Slider slider)
+    {        
+        this.globalDynamicSize = RescaleExponential(slider.value);
+    }
+
+    public void SetStaticVelocity(Slider slider)
+    {                            
+        this.globalStaticVelocity = RescaleExponential(slider.value);
+    }
+
+    public void SetDynamicVelocity(Slider slider)
+    {
+        this.globalDynamicVelocity = RescaleExponential(slider.value);
+    }
+
+    public void SetStaticEmission(Slider slider)
+    {
+        this.globalStaticEmission = RescaleExponential(slider.value);
+    }
+
+    public void SetDynamicEmission(Slider slider)
+    {
+        this.globalDynamicEmission = RescaleExponential(slider.value);
+    }
+
+        
+    public float RescaleExponential(float value)
+    {
+        return (Mathf.Pow(Settings.GoldenNumber, value) - 1);
+    }
+    // end GUI functions *********************************************
 
 
     public List<string> sunsName = new List<string>(
         new string[] { "Sun1", "Sun2", "Sun3", "Sun4", "Sun5", "Sun6", "Sun7", "Sun8", });
 
+    // Map from sun name to capters index
     public Dictionary<string, int> sunsToValues = new Dictionary<string, int>() {
         
         {"Sun1", 0},
@@ -47,7 +108,8 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     public Dictionary<string, ParticlesController> sunsSystems = new Dictionary<string, ParticlesController>();
 
-    // collect the values used by the particules system 
+    // collect the frequency values done by the sound 
+    // the values are derived from the tempSamples
     public float[] soundCapters = new float[8]; 
 
     // use in UI 
@@ -163,7 +225,7 @@ public class AudioAnalyzer1 : MonoBehaviour
     {
         foreach( ParticlesController p in sunsSystems.Values)
         {
-            p.ChangeSize(globalSizeStatic);
+            p.ChangeSize(globalStaticSize);
         }
 
     }
@@ -173,7 +235,7 @@ public class AudioAnalyzer1 : MonoBehaviour
     {
         foreach (ParticlesController p in sunsSystems.Values)
         {
-            p.ChangeEmision(globalEmissionStatic);
+            p.ChangeEmision(globalStaticEmission);
         }
 
     }
@@ -183,7 +245,7 @@ public class AudioAnalyzer1 : MonoBehaviour
     {
         foreach (ParticlesController p in sunsSystems.Values)
         {
-            p.ChangeVelocity(globalVelocityStatic);
+            p.ChangeVelocity(globalStaticVelocity);
         }
 
     }
@@ -203,10 +265,12 @@ public class AudioAnalyzer1 : MonoBehaviour
         float newValue = 0;
         foreach (var p in sunsSystems)
         {
-            newValue = globalSizeFactor * soundCapters[ sunsToValues[p.Key] ];
+            newValue = globalDynamicSize * soundCapters[ sunsToValues[p.Key] ];
             p.Value.ChangeSize( newValue );
         }
     }
+
+
 
 
     private void SetSunsVelocityRelativeToSound()
@@ -216,7 +280,7 @@ public class AudioAnalyzer1 : MonoBehaviour
         float newValue = 0;
         foreach (var p in sunsSystems)
         {
-            newValue = globalSizeFactor * soundCapters[sunsToValues[p.Key]];
+            newValue = globalDynamicVelocity * soundCapters[sunsToValues[p.Key]];
             p.Value.ChangeVelocity(newValue);
 
         }
@@ -229,11 +293,11 @@ public class AudioAnalyzer1 : MonoBehaviour
         float newValue = 0;
         foreach (var p in sunsSystems)
         {
-            newValue = globalSizeFactor * soundCapters[sunsToValues[p.Key]];
+            newValue = globalDynamicEmission * soundCapters[sunsToValues[p.Key]];
             p.Value.ChangeEmision(newValue);
+
         }
     }
-
 
 
 

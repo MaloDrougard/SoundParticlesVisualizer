@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class Settings {
 
+    public const float GoldenNumber = 1.61803398874989484820458683436f;
 
     static Vector3 deltaXBetweenSuns = new Vector3(48, 0, 0);
     static Vector3 deltaYBetweenSuns = new Vector3(0, 54, 0);
@@ -69,62 +70,62 @@ public static class Settings {
         new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
         new TransitionShot(defaultTransitionTime),
 
-        new PositionShot(sun5P + new Vector3(0,0,-60) , sun5P + new Vector3(0,0,60), defaultStarringTime),
-        new TransitionShot(defaultTransitionTime),
+        //new PositionShot(sun5P + new Vector3(0,0,-60) , sun5P + new Vector3(0,0,60), defaultStarringTime),
+        //new TransitionShot(defaultTransitionTime),
 
 
-        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        new TransitionShot(defaultTransitionTime),
+        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        //new TransitionShot(defaultTransitionTime),
 
-        new PositionShot(sun6P + new Vector3(0,0,-60) , sun6P + new Vector3(0,0,60), defaultStarringTime),
-        new TransitionShot(defaultTransitionTime),
-
-
-        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        new TransitionShot(defaultTransitionTime),
-
-        new PositionShot(sun7P + new Vector3(0,0,-60) , sun7P + new Vector3(0,0,60), defaultStarringTime),
-        new TransitionShot(defaultTransitionTime),
-
-        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        new TransitionShot(defaultTransitionTime),
-
-        new PositionShot(sun8P + new Vector3(0,0,-60) , sun8P + new Vector3(0,0,60), defaultStarringTime),
-        new TransitionShot(defaultTransitionTime),
+        //new PositionShot(sun6P + new Vector3(0,0,-60) , sun6P + new Vector3(0,0,60), defaultStarringTime),
+        //new TransitionShot(defaultTransitionTime),
 
 
+        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        //new TransitionShot(defaultTransitionTime),
 
-        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 30),
-        new TransitionShot(defaultTransitionTime),
+        //new PositionShot(sun7P + new Vector3(0,0,-60) , sun7P + new Vector3(0,0,60), defaultStarringTime),
+        //new TransitionShot(defaultTransitionTime),
 
+        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        //new TransitionShot(defaultTransitionTime),
 
-        new PositionShot(sun1P + new Vector3(0,0,-60) , sun1P + new Vector3(0,0,60), defaultStarringTime),
-        new TransitionShot(defaultTransitionTime),
-
-        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        new TransitionShot(defaultTransitionTime),
-
-        new PositionShot(sun2P + new Vector3(0,0,-60) , sun2P + new Vector3(0,0,60), defaultStarringTime),
-        new TransitionShot(defaultTransitionTime),
-
-
-        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        new TransitionShot(defaultTransitionTime),
-
-        new PositionShot(sun3P + new Vector3(0,0,-60) , sun3P + new Vector3(0,0,60), defaultStarringTime),
-        new TransitionShot(defaultTransitionTime),
-
-
-        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        new TransitionShot(defaultTransitionTime),
-
-        new PositionShot(sun4P + new Vector3(0,0,-60) , sun4P + new Vector3(0,0,60), defaultStarringTime),
-        new TransitionShot(defaultTransitionTime),
+        //new PositionShot(sun8P + new Vector3(0,0,-60) , sun8P + new Vector3(0,0,60), defaultStarringTime),
+        //new TransitionShot(defaultTransitionTime),
 
 
 
-        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        new TransitionShot(defaultTransitionTime),
+        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 30),
+        //new TransitionShot(defaultTransitionTime),
+
+
+        //new PositionShot(sun1P + new Vector3(0,0,-60) , sun1P + new Vector3(0,0,60), defaultStarringTime),
+        //new TransitionShot(defaultTransitionTime),
+
+        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        //new TransitionShot(defaultTransitionTime),
+
+        //new PositionShot(sun2P + new Vector3(0,0,-60) , sun2P + new Vector3(0,0,60), defaultStarringTime),
+        //new TransitionShot(defaultTransitionTime),
+
+
+        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        //new TransitionShot(defaultTransitionTime),
+
+        //new PositionShot(sun3P + new Vector3(0,0,-60) , sun3P + new Vector3(0,0,60), defaultStarringTime),
+        //new TransitionShot(defaultTransitionTime),
+
+
+        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        //new TransitionShot(defaultTransitionTime),
+
+        //new PositionShot(sun4P + new Vector3(0,0,-60) , sun4P + new Vector3(0,0,60), defaultStarringTime),
+        //new TransitionShot(defaultTransitionTime),
+
+
+
+        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        //new TransitionShot(defaultTransitionTime),
 
 
     };
