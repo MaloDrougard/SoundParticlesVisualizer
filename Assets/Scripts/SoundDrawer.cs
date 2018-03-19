@@ -16,7 +16,7 @@ public class SoundDrawer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Init(64); 
+   
 	}
 
 

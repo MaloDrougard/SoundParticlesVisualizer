@@ -301,6 +301,41 @@ Prefab:
       propertyPath: globalDynamicEmission
       value: 1.3
       objectReference: {fileID: 0}
+    - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
+        type: 2}
+      propertyPath: samplesDrawer
+      value: 
+      objectReference: {fileID: 187922775}
+    - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
+        type: 2}
+      propertyPath: captersDrawer
+      value: 
+      objectReference: {fileID: 971121621}
+    - target: {fileID: 82508153264939280, guid: 4eaa195ba86e93b4d8b220446ba47456,
+        type: 2}
+      propertyPath: BypassListenerEffects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82508153264939280, guid: 4eaa195ba86e93b4d8b220446ba47456,
+        type: 2}
+      propertyPath: BypassReverbZones
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82508153264939280, guid: 4eaa195ba86e93b4d8b220446ba47456,
+        type: 2}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82508153264939280, guid: 4eaa195ba86e93b4d8b220446ba47456,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114836815875547088, guid: 4eaa195ba86e93b4d8b220446ba47456,
+        type: 2}
+      propertyPath: samplesSize
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4eaa195ba86e93b4d8b220446ba47456, type: 2}
   m_IsPrefabParent: 0
@@ -584,7 +619,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 787337735
+  randomSeed: 508937121
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4358,7 +4393,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1593545213
+  randomSeed: 1174545743
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7809,7 +7844,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1758514586
+  randomSeed: 2143190913
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11262,8 +11297,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: a1c736dfa695fce40aa53e079863efb5, type: 2}
-  - {fileID: 2100000, guid: a1c736dfa695fce40aa53e079863efb5, type: 2}
+  - {fileID: 2100000, guid: 6645d49887189744f9135bf6830dffc2, type: 2}
+  - {fileID: 2100000, guid: 6645d49887189744f9135bf6830dffc2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11436,6 +11471,14 @@ Prefab:
     - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159969324716552, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_Name
+      value: SoundLineSamples
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
@@ -11790,8 +11833,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5368c40ff094dbe489f3e3b421b2efee, type: 2}
-  - {fileID: 2100000, guid: 5368c40ff094dbe489f3e3b421b2efee, type: 2}
+  - {fileID: 2100000, guid: 327f1ea2d04cae2438ee5cbf85667f7a, type: 2}
+  - {fileID: 2100000, guid: 327f1ea2d04cae2438ee5cbf85667f7a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11890,7 +11933,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 586196349
+  randomSeed: 1331819285
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12703,7 +12746,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1.5707963
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -12744,7 +12787,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.052359875
+      scalar: 0
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -12784,7 +12827,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 1
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -15453,8 +15496,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6645d49887189744f9135bf6830dffc2, type: 2}
-  - {fileID: 2100000, guid: 6645d49887189744f9135bf6830dffc2, type: 2}
+  - {fileID: 2100000, guid: 2a914dfd21e187644aa63b376dc2c582, type: 2}
+  - {fileID: 2100000, guid: 2a914dfd21e187644aa63b376dc2c582, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15553,7 +15596,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 889597761
+  randomSeed: -1151553581
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19140,6 +19183,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 955480751}
+--- !u!4 &971121619 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1779223009}
+--- !u!114 &971121621 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114520100581687352, guid: 2533c5ff45f687349bb6e622f09a83bb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1779223009}
+  m_Script: {fileID: 11500000, guid: 719ad3123a349974f8e3fe94785164bf, type: 3}
 --- !u!1 &975853159
 GameObject:
   m_ObjectHideFlags: 0
@@ -19454,7 +19508,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1723140696
+  randomSeed: 1742421762
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -22794,7 +22848,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.013133898, b: 0.27205884, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -23006,6 +23060,7 @@ Transform:
   - {fileID: 1993384418}
   - {fileID: 1144795040}
   - {fileID: 187922773}
+  - {fileID: 971121619}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23170,7 +23225,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 940009686
+  randomSeed: 2100041177
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -27083,7 +27138,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -491475609
+  randomSeed: -1871227272
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -27937,7 +27992,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1.0471976
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -27975,7 +28030,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    separateAxes: 1
+    separateAxes: 0
   ColorModule:
     enabled: 1
     gradient:
@@ -30753,6 +30808,56 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1768788308}
+--- !u!1001 &1779223009
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1293009026}
+    m_Modifications:
+    - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1159969324716552, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_Name
+      value: SoundLineCapters
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210818915288076, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2533c5ff45f687349bb6e622f09a83bb, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1789124827
 GameObject:
   m_ObjectHideFlags: 0

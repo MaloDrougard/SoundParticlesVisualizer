@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Linq;
+using System;
 
 public class AudioAnalyzer1 : MonoBehaviour
 {
@@ -87,6 +88,17 @@ public class AudioAnalyzer1 : MonoBehaviour
     {
         return (Mathf.Pow(Settings.GoldenNumber, value) - 1);
     }
+
+
+    public void ChangeColor()
+    {
+        foreach (var p in sunsSystems.Values)
+        {
+            p.ChangeColor();
+        }
+
+    }
+
     // end GUI functions *********************************************
 
 
@@ -96,30 +108,48 @@ public class AudioAnalyzer1 : MonoBehaviour
     // Map from sun name to capters index
     public Dictionary<string, int> sunsToValues = new Dictionary<string, int>() {
         
-        {"Sun1", 0},
-        {"Sun2", 1},
-        {"Sun3", 2},
-        {"Sun4", 3},
-        {"Sun5", 4},
-        {"Sun6", 5},
+        {"Sun1", 1},
+        {"Sun5", 2},
+
+        {"Sun2", 2},
+        {"Sun6", 3},
+
+        {"Sun3", 3},
         {"Sun7", 4},
-        {"Sun8", 0}
+
+        {"Sun4", 4},        
+        {"Sun8", 5}
     };
 
     public Dictionary<string, ParticlesController> sunsSystems = new Dictionary<string, ParticlesController>();
 
     // collect the frequency values done by the sound 
     // the values are derived from the tempSamples
-    public float[] soundCapters = new float[8]; 
+    public float[] soundCapters = new float[8];
+
+    // Maximal possible frequency
+    float fMax = 0;
 
     // use in UI 
-    public SoundDrawer basicDrawer = null;
+    public SoundDrawer samplesDrawer = null;
+    public SoundDrawer captersDrawer = null;
 
-    
+    float[] captersDrawerValues = null;
 
     // Use this for initialization
     void Start()
     {
+     
+        if (soundCapters != null)
+        {
+            captersDrawer.Init(6);
+            captersDrawerValues = new float[6];
+        }
+        if(samplesDrawer != null)
+        {
+            samplesDrawer.Init(samplesSize); 
+        }
+
 
         GameObject finded = null; 
         foreach (string name in sunsName)
@@ -140,17 +170,17 @@ public class AudioAnalyzer1 : MonoBehaviour
 
 
 
+
      
         audioSource = this.GetComponent<AudioSource>();
-        audioSource.clip = Microphone.Start("", true, 100000, 44100); // FIXEME: need infinty
+        audioSource.clip = Microphone.Start("", true, 100, 48000); // FIXEME: need infinty
         audioSource.Play();
+
+        fMax = AudioSettings.outputSampleRate / 2;
+        Debug.Log(fMax);
 
         tempSamples = new float[samplesSize];
 
-        foreach(var p in sunsSystems.Values)
-        {
-            //p.ChangeColor(); 
-        }
 
     }
 
@@ -161,10 +191,11 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     void Update()
     {
-        
+     
         audioSource.GetSpectrumData(tempSamples, 0, FFTWindow.Blackman);
         SetSoundCapters(); 
         UpdateBasicDrawer();
+        
 
         if (useStaticSize)
         {
@@ -197,28 +228,37 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     private  void SetSoundCapters()
     {
-        int modulo = ((samplesSize / 8) * 7);
-        
-        // flat a little bit
-        for (int i = 0; i <samplesSize; i++)
-        {
-            
-            tempSamples[i] = (i + 1)  * tempSamples[i]; // we do not take realy high frequncy because never happend
-        }
+       
 
-        for(int i = 0; i < 8; i++)
-        {
-            soundCapters[i] = 0; 
-        }
+        soundCapters[0] = 10 * BandVol(1, 120); // not used
+        soundCapters[1] = 3 * BandVol(120, 300);
+        soundCapters[2] = 3 * BandVol(300, 800);
+        soundCapters[3] = 1 * BandVol(800, 1500);
+        soundCapters[4] = 1 * BandVol(1500, 4000);
+        soundCapters[5] = 5 * BandVol(4000, 8000);
+        soundCapters[6] = 10* BandVol(8000, fMax); // not used
+        soundCapters[7] = BandVol(0, fMax);
 
-        int n = 0;
-        for (int j = 0; j < samplesSize; j++)
-        {
-            n = (int) Mathf.Floor(j / 8);
-            soundCapters[ n ] += tempSamples[ j ];
-        }
+
 
     }
+
+
+    float BandVol(float fLow, float fHigh){
+ 
+     fLow = Mathf.Clamp(fLow, 20, fMax); // limit low...
+     fHigh = Mathf.Clamp(fHigh, fLow, fMax); // and high frequencies
+
+     int n1 = (int) Mathf.Floor(fLow / fMax * (float) samplesSize );
+     int n2 = (int) Mathf.Floor(fHigh / fMax  * (float) samplesSize );
+     float sum = 0;
+
+     // average the volumes of frequencies fLow to fHigh
+     for (var i=n1; i<=n2-1; i++){
+         sum += tempSamples[i];
+     }
+        return sum; // (n2 - n1 + 1);
+ }
 
 
     private void SetSunsSizeStatic()
@@ -253,10 +293,17 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     private void UpdateBasicDrawer()
     {
-        if (basicDrawer != null)
+        if (samplesDrawer != null)
         {
-            basicDrawer.DisplaySamples(tempSamples);
+            samplesDrawer.DisplaySamples(tempSamples);
         }
+        if (captersDrawer != null)
+        {
+       
+            Array.Copy(soundCapters, 1, captersDrawerValues, 0, 6);
+            captersDrawer.DisplaySamples(captersDrawerValues) ;
+        }
+
     }
 
 
