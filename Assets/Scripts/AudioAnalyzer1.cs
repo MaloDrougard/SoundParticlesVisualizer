@@ -231,12 +231,12 @@ public class AudioAnalyzer1 : MonoBehaviour
        
 
         soundCapters[0] = 10 * BandVol(1, 120); // not used
-        soundCapters[1] = 3 * BandVol(120, 300);
-        soundCapters[2] = 3 * BandVol(300, 800);
-        soundCapters[3] = 1 * BandVol(800, 1500);
-        soundCapters[4] = 1 * BandVol(1500, 4000);
-        soundCapters[5] = 5 * BandVol(4000, 8000);
-        soundCapters[6] = 10* BandVol(8000, fMax); // not used
+        soundCapters[1] = 10 * BandVol(120, 300);
+        soundCapters[2] = 10 * BandVol(300, 800);
+        soundCapters[3] = 10 * BandVol(800, 1500);
+        soundCapters[4] = 10 * BandVol(1500, 4000);
+        soundCapters[5] = 13 * BandVol(4000, 8000);
+        soundCapters[6] = 13* BandVol(8000, fMax); // not used
         soundCapters[7] = BandVol(0, fMax);
 
 
