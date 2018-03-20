@@ -70,69 +70,118 @@ public static class Settings {
         new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
         new TransitionShot(defaultTransitionTime),
 
-        //new PositionShot(sun5P + new Vector3(0,0,-60) , sun5P + new Vector3(0,0,60), defaultStarringTime),
-        //new TransitionShot(defaultTransitionTime),
+        new PositionShot(sun5P + new Vector3(0,0,-60) , sun5P + new Vector3(0,0,60), defaultStarringTime),
+        new TransitionShot(defaultTransitionTime),
 
 
-        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        //new TransitionShot(defaultTransitionTime),
+        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        new TransitionShot(defaultTransitionTime),
 
-        //new PositionShot(sun6P + new Vector3(0,0,-60) , sun6P + new Vector3(0,0,60), defaultStarringTime),
-        //new TransitionShot(defaultTransitionTime),
-
-
-        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        //new TransitionShot(defaultTransitionTime),
-
-        //new PositionShot(sun7P + new Vector3(0,0,-60) , sun7P + new Vector3(0,0,60), defaultStarringTime),
-        //new TransitionShot(defaultTransitionTime),
-
-        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        //new TransitionShot(defaultTransitionTime),
-
-        //new PositionShot(sun8P + new Vector3(0,0,-60) , sun8P + new Vector3(0,0,60), defaultStarringTime),
-        //new TransitionShot(defaultTransitionTime),
+        new PositionShot(sun6P + new Vector3(0,0,-60) , sun6P + new Vector3(0,0,60), defaultStarringTime),
+        new TransitionShot(defaultTransitionTime),
 
 
+        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        new TransitionShot(defaultTransitionTime),
 
-        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 30),
-        //new TransitionShot(defaultTransitionTime),
+        new PositionShot(sun7P + new Vector3(0,0,-60) , sun7P + new Vector3(0,0,60), defaultStarringTime),
+        new TransitionShot(defaultTransitionTime),
 
+        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        new TransitionShot(defaultTransitionTime),
 
-        //new PositionShot(sun1P + new Vector3(0,0,-60) , sun1P + new Vector3(0,0,60), defaultStarringTime),
-        //new TransitionShot(defaultTransitionTime),
-
-        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        //new TransitionShot(defaultTransitionTime),
-
-        //new PositionShot(sun2P + new Vector3(0,0,-60) , sun2P + new Vector3(0,0,60), defaultStarringTime),
-        //new TransitionShot(defaultTransitionTime),
-
-
-        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        //new TransitionShot(defaultTransitionTime),
-
-        //new PositionShot(sun3P + new Vector3(0,0,-60) , sun3P + new Vector3(0,0,60), defaultStarringTime),
-        //new TransitionShot(defaultTransitionTime),
-
-
-        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        //new TransitionShot(defaultTransitionTime),
-
-        //new PositionShot(sun4P + new Vector3(0,0,-60) , sun4P + new Vector3(0,0,60), defaultStarringTime),
-        //new TransitionShot(defaultTransitionTime),
+        new PositionShot(sun8P + new Vector3(0,0,-60) , sun8P + new Vector3(0,0,60), defaultStarringTime),
+        new TransitionShot(defaultTransitionTime),
 
 
 
-        //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
-        //new TransitionShot(defaultTransitionTime),
+        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 30),
+        new TransitionShot(defaultTransitionTime),
+
+
+        new PositionShot(sun1P + new Vector3(0,0,-60) , sun1P + new Vector3(0,0,60), defaultStarringTime),
+        new TransitionShot(defaultTransitionTime),
+
+        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        new TransitionShot(defaultTransitionTime),
+
+        new PositionShot(sun2P + new Vector3(0,0,-60) , sun2P + new Vector3(0,0,60), defaultStarringTime),
+        new TransitionShot(defaultTransitionTime),
+
+
+        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        new TransitionShot(defaultTransitionTime),
+
+        new PositionShot(sun3P + new Vector3(0,0,-60) , sun3P + new Vector3(0,0,60), defaultStarringTime),
+        new TransitionShot(defaultTransitionTime),
+
+
+        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        new TransitionShot(defaultTransitionTime),
+
+        new PositionShot(sun4P + new Vector3(0,0,-60) , sun4P + new Vector3(0,0,60), defaultStarringTime),
+        new TransitionShot(defaultTransitionTime),
+
+
+
+        new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
+        new TransitionShot(defaultTransitionTime),
 
 
     };
 
 
+    
+
+    public static List<Gradient> colors = new List<Gradient>()
+    {
+       
+    };
 
 
+    public static void InitGradient()
+    {
+        Gradient gradRougeBleu = new Gradient();
+        gradRougeBleu.SetKeys(
+            new GradientColorKey[] {
+                new GradientColorKey(Color.red, 0.0f),
+                new GradientColorKey(Color.blue, 1.0f) },
+            new GradientAlphaKey[] {
+                new GradientAlphaKey(0.0f, 0.0f),
+                new GradientAlphaKey(1.0f, 0.2f),
+                new GradientAlphaKey(0.4f, 0.7f),
+                new GradientAlphaKey(0.0f, 1.0f) });
+        colors.Add(gradRougeBleu);
+
+        Gradient gradVertBleu = new Gradient();
+        gradVertBleu.SetKeys(
+            new GradientColorKey[] {
+                new GradientColorKey(Color.green, 0.0f),
+                new GradientColorKey(Color.green, 0.2f),
+                new GradientColorKey(Color.blue, 1.0f) },
+            new GradientAlphaKey[] {
+                new GradientAlphaKey(0.0f, 0.0f),
+                new GradientAlphaKey(0.9f, 0.2f),
+                new GradientAlphaKey(0.6f, 0.8f),
+                new GradientAlphaKey(0.0f, 1.0f) });
+        colors.Add(gradVertBleu);
+
+
+        Gradient gradVertLuciole = new Gradient();
+        gradVertLuciole.SetKeys(
+            new GradientColorKey[] {
+                new GradientColorKey(Color.HSVToRGB(120 / 359f,111 / 255f, 189 / 255f), 0.0f),
+                new GradientColorKey(Color.HSVToRGB(120 / 359f, 111 / 255f, 189 / 255f), 1f), },
+     
+            new GradientAlphaKey[] {
+                new GradientAlphaKey(0.0f, 0.0f),
+                new GradientAlphaKey(0.8f, 0.4f),
+                new GradientAlphaKey(0.0f, 1.0f) });
+        colors.Add(gradVertLuciole);
+
+
+
+    }
 
 
 }

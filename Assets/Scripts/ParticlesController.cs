@@ -14,14 +14,17 @@ public class ParticlesController : MonoBehaviour {
     private ParticleSystem.EmissionModule emission;
     private ParticleSystem.VelocityOverLifetimeModule velocity;
     private ParticleSystem.SizeOverLifetimeModule size;
-    private ParticleSystem.ColorOverLifetimeModule color; 
-    
+    private ParticleSystem.ColorOverLifetimeModule color;
+
+
+    Gradient initialColor = new Gradient();
 
 	void Start () {
        emission = particles.emission;
        velocity = particles.velocityOverLifetime;
        size = particles.sizeOverLifetime;
        color = particles.colorOverLifetime;
+       initialColor = color.color.gradient; 
     }
 	
 
@@ -44,12 +47,15 @@ public class ParticlesController : MonoBehaviour {
         size.size = new ParticleSystem.MinMaxCurve(sizeFactor * newSize);
     }
 
-    public void ChangeColor()
-    {// fixeme
+    public void ChangeColor(Gradient gradient)
+    {
         color.enabled = true;
-        Gradient grad = new Gradient();
-        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(Color.blue, 0.0f), new GradientColorKey(Color.red, 1.0f) }, new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
-        color.color = grad; 
+        color.color = gradient;
+    }
+
+    public void ResetInitialColor()
+    {
+        color.color = initialColor;
     }
 
 

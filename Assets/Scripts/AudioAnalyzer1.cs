@@ -90,13 +90,22 @@ public class AudioAnalyzer1 : MonoBehaviour
     }
 
 
-    public void ChangeColor()
+    public void ChangeColor(int idx)
     {
         foreach (var p in sunsSystems.Values)
         {
-            p.ChangeColor();
+            p.ChangeColor(Settings.colors[idx]);
         }
 
+    }
+
+    public void ResetInitialColor()
+    {
+
+        foreach (var p in sunsSystems.Values)
+        {
+            p.ResetInitialColor();
+        }
     }
 
     // end GUI functions *********************************************
@@ -150,6 +159,7 @@ public class AudioAnalyzer1 : MonoBehaviour
             samplesDrawer.Init(samplesSize); 
         }
 
+        Settings.InitGradient(); // strange thing to init gradient 
 
         GameObject finded = null; 
         foreach (string name in sunsName)
@@ -173,7 +183,7 @@ public class AudioAnalyzer1 : MonoBehaviour
 
      
         audioSource = this.GetComponent<AudioSource>();
-        audioSource.clip = Microphone.Start("", true, 100, 48000); // FIXEME: need infinty
+        audioSource.clip = Microphone.Start("", true, 120, 48000); 
         audioSource.Play();
 
         fMax = AudioSettings.outputSampleRate / 2;
