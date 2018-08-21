@@ -26,7 +26,7 @@ public class AudioAnalyzer : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        
         audioSource = this.GetComponent<AudioSource>();
         audioSource.clip = Microphone.Start("", true, 120, 44100);
         audioSource.Play();

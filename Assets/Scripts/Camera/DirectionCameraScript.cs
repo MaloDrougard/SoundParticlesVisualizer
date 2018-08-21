@@ -35,6 +35,7 @@ public class DirectionCameraScript : MonoBehaviour {
                 // set the origin of delta
                 if (Input.GetMouseButtonDown(0))
                 {
+            Debug.Log("safa");
                     if (RelativeToScreenCenter)
                     {
                         mouseDeltaOrigin = new Vector3(Screen.width / 2, Screen.height / 2, 0);
