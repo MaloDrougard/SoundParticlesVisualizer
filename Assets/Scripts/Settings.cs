@@ -2,7 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 
+/// Settings is the static class that hold the main camera path (via AutoCameraScript) 
+/// 
+/// </summary>
 public static class Settings {
+
+    static GradientCreator gradientCreator = new GradientCreator();
+
+
+    // CAMERA PATH
 
     public const float GoldenNumber = 1.61803398874989484820458683436f;
 
@@ -23,7 +33,6 @@ public static class Settings {
     
     static float defaultStarringTime = 10;
     static float defaultTransitionTime = 10;
-
 
     public static List<AutoCameraShot> camShots = new List<AutoCameraShot>()
     {
@@ -131,57 +140,14 @@ public static class Settings {
     };
 
 
+
+
+    static public List<string> sunsName = new List<string>(
+        new string[] { "Sun1", "Sun2", "Sun3", "Sun4", "Sun5", "Sun6", "Sun7", "Sun8", }
+        );
+
     
 
-    public static List<Gradient> colors = new List<Gradient>()
-    {
-       
-    };
-
-
-    public static void InitGradient()
-    {
-        Gradient gradRougeBleu = new Gradient();
-        gradRougeBleu.SetKeys(
-            new GradientColorKey[] {
-                new GradientColorKey(Color.red, 0.0f),
-                new GradientColorKey(Color.blue, 1.0f) },
-            new GradientAlphaKey[] {
-                new GradientAlphaKey(0.0f, 0.0f),
-                new GradientAlphaKey(1.0f, 0.2f),
-                new GradientAlphaKey(0.4f, 0.7f),
-                new GradientAlphaKey(0.0f, 1.0f) });
-        colors.Add(gradRougeBleu);
-
-        Gradient gradVertBleu = new Gradient();
-        gradVertBleu.SetKeys(
-            new GradientColorKey[] {
-                new GradientColorKey(Color.green, 0.0f),
-                new GradientColorKey(Color.green, 0.2f),
-                new GradientColorKey(Color.blue, 1.0f) },
-            new GradientAlphaKey[] {
-                new GradientAlphaKey(0.0f, 0.0f),
-                new GradientAlphaKey(0.9f, 0.2f),
-                new GradientAlphaKey(0.6f, 0.8f),
-                new GradientAlphaKey(0.0f, 1.0f) });
-        colors.Add(gradVertBleu);
-
-
-        Gradient gradVertLuciole = new Gradient();
-        gradVertLuciole.SetKeys(
-            new GradientColorKey[] {
-                new GradientColorKey(Color.HSVToRGB(120 / 359f,111 / 255f, 189 / 255f), 0.0f),
-                new GradientColorKey(Color.HSVToRGB(120 / 359f, 111 / 255f, 189 / 255f), 1f), },
-     
-            new GradientAlphaKey[] {
-                new GradientAlphaKey(0.0f, 0.0f),
-                new GradientAlphaKey(0.8f, 0.4f),
-                new GradientAlphaKey(0.0f, 1.0f) });
-        colors.Add(gradVertLuciole);
-
-
-
-    }
-
+    
 
 }

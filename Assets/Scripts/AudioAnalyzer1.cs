@@ -9,7 +9,6 @@ public class AudioAnalyzer1 : MonoBehaviour
 {
 
     AudioSource audioSource = null;
-
     
     public int samplesSize;
     // strore samples from audio source 
@@ -39,19 +38,15 @@ public class AudioAnalyzer1 : MonoBehaviour
         useStaticSize = toggle.isOn; 
     }
 
-
     public void EnableStaticVelocity(Toggle toggle)
     {
         useStaticVelocity = toggle.isOn;
     }
 
-
     public void EnableStaticEmission(Toggle toggle)
     {
         useStaticEmission = toggle.isOn;
     }
-
-
 
     public void SetStaticSize(Slider slider)
     { 
@@ -83,30 +78,12 @@ public class AudioAnalyzer1 : MonoBehaviour
         this.globalDynamicEmission = RescaleExponential(slider.value);
     }
 
-        
     public float RescaleExponential(float value)
     {
         return (Mathf.Pow(Settings.GoldenNumber, value) - 1);
     }
 
-
-    public void ChangeColor(int idx)
-    {
-        foreach (var p in sunsSystems.Values)
-        {
-            p.ChangeColor(Settings.colors[idx]);
-        }
-
-    }
-
-    public void ResetInitialColor()
-    {
-
-        foreach (var p in sunsSystems.Values)
-        {
-            p.ResetInitialColor();
-        }
-    }
+    
 
     // end GUI functions *********************************************
 
@@ -145,6 +122,8 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     float[] captersDrawerValues = null;
 
+
+
     // Use this for initialization
     void Start()
     {
@@ -159,7 +138,6 @@ public class AudioAnalyzer1 : MonoBehaviour
             samplesDrawer.Init(samplesSize); 
         }
 
-        Settings.InitGradient(); // strange thing to init gradient 
 
         GameObject finded = null; 
         foreach (string name in sunsName)
@@ -169,19 +147,13 @@ public class AudioAnalyzer1 : MonoBehaviour
             if (finded == null)
             {
                 Debug.LogWarning("AUDIOANALYZER1: Start(): " + name + " gameobject not found!");
-
             }
-            else
-            {
+            else{
                 sunsSystems.Add(name, finded.GetComponent<ParticlesController>());
             }
             finded = null;
         }
 
-
-
-
-     
         audioSource = this.GetComponent<AudioSource>();
         audioSource.clip = Microphone.Start("", true, 120, 48000); 
         audioSource.Play();
@@ -195,13 +167,8 @@ public class AudioAnalyzer1 : MonoBehaviour
     }
 
     
-
-
-
-
     void Update()
     {
-     
         audioSource.GetSpectrumData(tempSamples, 0, FFTWindow.Blackman);
         SetSoundCapters(); 
         UpdateBasicDrawer();
@@ -238,8 +205,6 @@ public class AudioAnalyzer1 : MonoBehaviour
 
     private  void SetSoundCapters()
     {
-       
-
         soundCapters[0] = 10 * BandVol(1, 120); // not used
         soundCapters[1] = 10 * BandVol(120, 300);
         soundCapters[2] = 10 * BandVol(300, 800);
@@ -248,9 +213,6 @@ public class AudioAnalyzer1 : MonoBehaviour
         soundCapters[5] = 13 * BandVol(4000, 8000);
         soundCapters[6] = 13* BandVol(8000, fMax); // not used
         soundCapters[7] = BandVol(0, fMax);
-
-
-
     }
 
 

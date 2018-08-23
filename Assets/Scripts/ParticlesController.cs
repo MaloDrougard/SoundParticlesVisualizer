@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manage one particles system.
+/// 
+/// Allow to have particular factors for each suns and to set the values.
+/// </summary>
 public class ParticlesController : MonoBehaviour {
 
     // The particules system managed by this controller
