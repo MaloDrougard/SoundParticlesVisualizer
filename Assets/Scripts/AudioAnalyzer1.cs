@@ -31,6 +31,43 @@ public class AudioAnalyzer1 : MonoBehaviour
     public float globalStaticEmission = 1;
 
 
+
+    // register for the particles system
+    public Dictionary<string, ParticlesController> sunsSystems = new Dictionary<string, ParticlesController>();
+
+
+    // collect the frequency values done by the sound 
+    // the values are derived from the tempSamples
+    // and used by the particles systems
+    public float[] soundCaptersInUse = new float[8];  
+    public float[] soundCaptersRaw = new float[8];
+    public float[] soundCaptersPrevious = new float[8];  
+    public float[] soundCaptersAverage = new float[8];  // use to smooth the transition
+    
+
+    // Map from sun name to capters index
+    public Dictionary<string, int> sunsToValues = new Dictionary<string, int>() {
+        {"Sun1", 1},
+        {"Sun5", 2},
+        {"Sun2", 2},
+        {"Sun6", 3},
+        {"Sun3", 3},
+        {"Sun7", 4},
+        {"Sun4", 4},
+        {"Sun8", 5}
+    };
+
+
+    // Maximal possible frequency
+    float fMax = 0;
+
+    // use in UI  (lines )
+    public SoundDrawer samplesDrawer = null;
+    public SoundDrawer captersDrawer = null;
+    float[] captersDrawerValues = null;
+
+
+
     // GUI functions, use by sliders to set this object ***************************
 
     public void EnableStaticSize(Toggle toggle )
@@ -83,44 +120,8 @@ public class AudioAnalyzer1 : MonoBehaviour
         return (Mathf.Pow(Settings.GoldenNumber, value) - 1);
     }
 
-    
 
-    // end GUI functions *********************************************
-
-
-    public List<string> sunsName = new List<string>(
-        new string[] { "Sun1", "Sun2", "Sun3", "Sun4", "Sun5", "Sun6", "Sun7", "Sun8", });
-
-    // Map from sun name to capters index
-    public Dictionary<string, int> sunsToValues = new Dictionary<string, int>() {
-        
-        {"Sun1", 1},
-        {"Sun5", 2},
-
-        {"Sun2", 2},
-        {"Sun6", 3},
-
-        {"Sun3", 3},
-        {"Sun7", 4},
-
-        {"Sun4", 4},        
-        {"Sun8", 5}
-    };
-
-    public Dictionary<string, ParticlesController> sunsSystems = new Dictionary<string, ParticlesController>();
-
-    // collect the frequency values done by the sound 
-    // the values are derived from the tempSamples
-    public float[] soundCapters = new float[8];
-
-    // Maximal possible frequency
-    float fMax = 0;
-
-    // use in UI 
-    public SoundDrawer samplesDrawer = null;
-    public SoundDrawer captersDrawer = null;
-
-    float[] captersDrawerValues = null;
+    // GUI functions, end ***************************
 
 
 
@@ -128,7 +129,7 @@ public class AudioAnalyzer1 : MonoBehaviour
     void Start()
     {
      
-        if (soundCapters != null)
+        if (soundCaptersInUse != null)
         {
             captersDrawer.Init(6);
             captersDrawerValues = new float[6];
@@ -140,7 +141,7 @@ public class AudioAnalyzer1 : MonoBehaviour
 
 
         GameObject finded = null; 
-        foreach (string name in sunsName)
+        foreach (string name in Settings.sunsName)
         {
             
             finded = GameObject.Find(name);
@@ -162,15 +163,14 @@ public class AudioAnalyzer1 : MonoBehaviour
         Debug.Log(fMax);
 
         tempSamples = new float[samplesSize];
-
-
     }
 
     
     void Update()
     {
         audioSource.GetSpectrumData(tempSamples, 0, FFTWindow.Blackman);
-        SetSoundCapters(); 
+
+        SetSoundCapters();
         UpdateBasicDrawer();
         
 
@@ -203,17 +203,42 @@ public class AudioAnalyzer1 : MonoBehaviour
     }
 
 
-    private  void SetSoundCapters()
+    private void SetSoundCapters()
     {
-        soundCapters[0] = 10 * BandVol(1, 120); // not used
-        soundCapters[1] = 10 * BandVol(120, 300);
-        soundCapters[2] = 10 * BandVol(300, 800);
-        soundCapters[3] = 10 * BandVol(800, 1500);
-        soundCapters[4] = 10 * BandVol(1500, 4000);
-        soundCapters[5] = 13 * BandVol(4000, 8000);
-        soundCapters[6] = 13* BandVol(8000, fMax); // not used
-        soundCapters[7] = BandVol(0, fMax);
+        soundCaptersPrevious = soundCaptersInUse;
+        SetSoundCaptersRaw();
+        SetSoundCaptersAverage();
+
+        soundCaptersInUse = soundCaptersAverage; 
+
     }
+
+    private void SetSoundCaptersAverage()
+    {
+        float percent = 0.2f; // percentage of the new value 
+        soundCaptersAverage[0] = percent * soundCaptersRaw[0] + (1 - percent) * soundCaptersPrevious[0] ;
+        soundCaptersAverage[1] = percent * soundCaptersRaw[1] + (1 - percent) *  soundCaptersPrevious[1];
+        soundCaptersAverage[2] = percent * soundCaptersRaw[2] + (1 - percent) * soundCaptersPrevious[2];
+        soundCaptersAverage[3] = percent * soundCaptersRaw[3] + (1 - percent) * soundCaptersPrevious[3];
+        soundCaptersAverage[4] = percent * soundCaptersRaw[4] + (1 - percent) * soundCaptersPrevious[4];
+        soundCaptersAverage[5] = percent * soundCaptersRaw[5] + (1 - percent) * soundCaptersPrevious[5];
+        soundCaptersAverage[6] = percent * soundCaptersRaw[6] + (1 - percent) * soundCaptersPrevious[6];
+        soundCaptersAverage[7] = percent * soundCaptersRaw[7] + (1 - percent) * soundCaptersPrevious[7];
+    }
+
+    private  void SetSoundCaptersRaw()
+    {
+        soundCaptersRaw[0] = 10 * BandVol(1, 120); // not used
+        soundCaptersRaw[1] = 10 * BandVol(120, 300);
+        soundCaptersRaw[2] = 10 * BandVol(300, 800);
+        soundCaptersRaw[3] = 10 * BandVol(800, 1500);
+        soundCaptersRaw[4] = 10 * BandVol(1500, 4000);
+        soundCaptersRaw[5] = 13 * BandVol(4000, 8000);
+        soundCaptersRaw[6] = 13* BandVol(8000, fMax); // not used
+        soundCaptersRaw[7] = BandVol(0, fMax);
+    }
+
+
 
 
     float BandVol(float fLow, float fHigh){
@@ -226,10 +251,10 @@ public class AudioAnalyzer1 : MonoBehaviour
      float sum = 0;
 
      // average the volumes of frequencies fLow to fHigh
-     for (var i=n1; i<=n2-1; i++){
+    for (var i=n1; i<=n2-1; i++){
          sum += tempSamples[i];
-     }
-        return sum; // (n2 - n1 + 1);
+    }
+    return sum; // (n2 - n1 + 1);
  }
 
 
@@ -272,7 +297,7 @@ public class AudioAnalyzer1 : MonoBehaviour
         if (captersDrawer != null)
         {
        
-            Array.Copy(soundCapters, 1, captersDrawerValues, 0, 6);
+            Array.Copy(soundCaptersInUse, 1, captersDrawerValues, 0, 6);
             captersDrawer.DisplaySamples(captersDrawerValues) ;
         }
 
@@ -284,22 +309,18 @@ public class AudioAnalyzer1 : MonoBehaviour
         float newValue = 0;
         foreach (var p in sunsSystems)
         {
-            newValue = globalDynamicSize * soundCapters[ sunsToValues[p.Key] ];
+            newValue = globalDynamicSize * soundCaptersInUse[ sunsToValues[p.Key] ];
             p.Value.ChangeSize( newValue );
         }
     }
 
 
-
-
     private void SetSunsVelocityRelativeToSound()
     {
-
-
         float newValue = 0;
         foreach (var p in sunsSystems)
         {
-            newValue = globalDynamicVelocity * soundCapters[sunsToValues[p.Key]];
+            newValue = globalDynamicVelocity * soundCaptersInUse[sunsToValues[p.Key]];
             p.Value.ChangeVelocity(newValue);
 
         }
@@ -312,7 +333,7 @@ public class AudioAnalyzer1 : MonoBehaviour
         float newValue = 0;
         foreach (var p in sunsSystems)
         {
-            newValue = globalDynamicEmission * soundCapters[sunsToValues[p.Key]];
+            newValue = globalDynamicEmission * soundCaptersInUse[sunsToValues[p.Key]];
             p.Value.ChangeEmision(newValue);
 
         }
