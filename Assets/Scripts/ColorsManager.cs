@@ -15,11 +15,22 @@ public class ColorsManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Color newColor = new Color();
 
         namesColors.Add("red", Color.red);
+        namesColors.Add("magenta", Color.magenta);
         namesColors.Add("blue", Color.blue);
+        namesColors.Add("cyan", Color.cyan);
+        namesColors.Add("yellow", Color.yellow);
         namesColors.Add("green", Color.green);
-        namesColors.Add("vertLucioles", Color.HSVToRGB(120 / 359f, 111 / 255f, 189 / 255f));
+        namesColors.Add("white", Color.white);
+
+        ColorUtility.TryParseHtmlString("#b3ffd9", out newColor);
+        namesColors.Add("vertClair", newColor);
+        
+        ColorUtility.TryParseHtmlString("#ff9933", out newColor);
+        namesColors.Add("orange", newColor);
+
 
         GameObject finded = null;
         foreach (string name in Settings.sunsName)
@@ -42,15 +53,13 @@ public class ColorsManager : MonoBehaviour {
 
         globalColorPanel.dropColorA.AddOptions(new List<string>(namesColors.Keys)) ;
         globalColorPanel.dropColorB.AddOptions(new List<string>(namesColors.Keys));
-
-
-
     }
+    
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+
+
+
+
 
     public void SetColorFromGlobalDrop()
     {
@@ -71,6 +80,8 @@ public class ColorsManager : MonoBehaviour {
             p.ResetInitialColor();
         }
     }
+
+
 
     public void ChangeColor(Gradient gradient)
     {
