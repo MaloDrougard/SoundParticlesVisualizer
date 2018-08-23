@@ -8,6 +8,7 @@ using System;
 public class AudioAnalyzer1 : MonoBehaviour
 {
 
+
     AudioSource audioSource = null;
     
     public int samplesSize;
@@ -35,6 +36,11 @@ public class AudioAnalyzer1 : MonoBehaviour
     // register for the particles system
     public Dictionary<string, ParticlesController> sunsSystems = new Dictionary<string, ParticlesController>();
 
+
+
+    // smoothing betweeen soundCapters and the soundCapterPrevious
+    public Slider averageSlider; // is the percentage of the new value taken to create the soundCapters in use
+ 
 
     // collect the frequency values done by the sound 
     // the values are derived from the tempSamples
@@ -208,22 +214,21 @@ public class AudioAnalyzer1 : MonoBehaviour
         soundCaptersPrevious = soundCaptersInUse;
         SetSoundCaptersRaw();
         SetSoundCaptersAverage();
-
         soundCaptersInUse = soundCaptersAverage; 
 
     }
 
     private void SetSoundCaptersAverage()
     {
-        float percent = 0.2f; // percentage of the new value 
-        soundCaptersAverage[0] = percent * soundCaptersRaw[0] + (1 - percent) * soundCaptersPrevious[0] ;
-        soundCaptersAverage[1] = percent * soundCaptersRaw[1] + (1 - percent) *  soundCaptersPrevious[1];
-        soundCaptersAverage[2] = percent * soundCaptersRaw[2] + (1 - percent) * soundCaptersPrevious[2];
-        soundCaptersAverage[3] = percent * soundCaptersRaw[3] + (1 - percent) * soundCaptersPrevious[3];
-        soundCaptersAverage[4] = percent * soundCaptersRaw[4] + (1 - percent) * soundCaptersPrevious[4];
-        soundCaptersAverage[5] = percent * soundCaptersRaw[5] + (1 - percent) * soundCaptersPrevious[5];
-        soundCaptersAverage[6] = percent * soundCaptersRaw[6] + (1 - percent) * soundCaptersPrevious[6];
-        soundCaptersAverage[7] = percent * soundCaptersRaw[7] + (1 - percent) * soundCaptersPrevious[7];
+        float smoothPercentage = averageSlider.value; 
+        soundCaptersAverage[0] = smoothPercentage * soundCaptersRaw[0] + (1 - smoothPercentage) * soundCaptersPrevious[0] ;
+        soundCaptersAverage[1] = smoothPercentage * soundCaptersRaw[1] + (1 - smoothPercentage) *  soundCaptersPrevious[1];
+        soundCaptersAverage[2] = smoothPercentage * soundCaptersRaw[2] + (1 - smoothPercentage) * soundCaptersPrevious[2];
+        soundCaptersAverage[3] = smoothPercentage * soundCaptersRaw[3] + (1 - smoothPercentage) * soundCaptersPrevious[3];
+        soundCaptersAverage[4] = smoothPercentage * soundCaptersRaw[4] + (1 - smoothPercentage) * soundCaptersPrevious[4];
+        soundCaptersAverage[5] = smoothPercentage * soundCaptersRaw[5] + (1 - smoothPercentage) * soundCaptersPrevious[5];
+        soundCaptersAverage[6] = smoothPercentage * soundCaptersRaw[6] + (1 - smoothPercentage) * soundCaptersPrevious[6];
+        soundCaptersAverage[7] = smoothPercentage * soundCaptersRaw[7] + (1 - smoothPercentage) * soundCaptersPrevious[7];
     }
 
     private  void SetSoundCaptersRaw()
