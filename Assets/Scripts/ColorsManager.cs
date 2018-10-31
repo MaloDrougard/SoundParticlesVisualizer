@@ -6,11 +6,33 @@ public class ColorsManager : MonoBehaviour {
 
     public Dictionary<string, ParticlesController> sunsSystems = new Dictionary<string, ParticlesController>();
 
+
+    public Dictionary<string, Dictionary<string, Gradient> > gradientsConfig = new Dictionary< string,  Dictionary<string, Gradient>>();
+    
+    
     public Dictionary<string, Color> namesColors = new Dictionary<string, Color>();
 
     public ColorPanel globalColorPanel;
 
     public GradientCreator gradientCreator = new GradientCreator();
+
+
+
+    void InitGradientsConfig()
+    {
+        Dictionary<string, Gradient> tempGradients = new Dictionary<string, Gradient>();
+        tempGradients.Add("Sun1", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["green"]));
+        tempGradients.Add("Sun2", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["green"]));
+        tempGradients.Add("Sun3", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["green"]));
+        tempGradients.Add("Sun4", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["green"]));
+        tempGradients.Add("Sun5", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["blue"]));
+        tempGradients.Add("Sun6", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["blue"]));
+        tempGradients.Add("Sun7", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["blue"]));
+        tempGradients.Add("Sun8", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["blue"]));
+        gradientsConfig.Add("Conf1", tempGradients);
+
+
+    }
 
 
     // Use this for initialization
@@ -31,6 +53,7 @@ public class ColorsManager : MonoBehaviour {
         ColorUtility.TryParseHtmlString("#ff9933", out newColor);
         namesColors.Add("orange", newColor);
 
+        InitGradientsConfig(); 
 
         GameObject finded = null;
         foreach (string name in Settings.sunsName)
@@ -57,7 +80,10 @@ public class ColorsManager : MonoBehaviour {
     
 
 
+    public void SetConfig1()
+    {
 
+    }
 
 
 

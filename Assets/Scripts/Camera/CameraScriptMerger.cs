@@ -33,6 +33,17 @@ public class CameraScriptMerger : MonoBehaviour
             autoCam.MoveDirectlyToNext();
             autoCam.Play();
         }
+        if (Input.GetButton("CamGoInInitPosition"))
+        {
+            autoCam.Pause();
+            manualCam.SetIsPilot(true);
+            this.transform.position = Settings.centerP + new Vector3(0,0,-300);
+            this.transform.LookAt(Settings.centerP);
+            manualCam.ResetRotation();
+            Debug.Log("input ok");
+         
+                    
+        }
 
 
 
