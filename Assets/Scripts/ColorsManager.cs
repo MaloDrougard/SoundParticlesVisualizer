@@ -62,6 +62,33 @@ public class ColorsManager : MonoBehaviour {
 
     void InitGradientsConfig()
     {
+       
+
+
+        Dictionary<string, Gradient> temp2Gradients = new Dictionary<string, Gradient>();
+        temp2Gradients.Add("Sun1", gradientCreator.CreateGradientTwoColor(namesColors["jaune-clair"], namesColors["green"]));
+        temp2Gradients.Add("Sun2", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["green"]));
+        temp2Gradients.Add("Sun3", gradientCreator.CreateGradientTwoColor(namesColors["jaune-clair"], namesColors["green"]));
+        temp2Gradients.Add("Sun4", gradientCreator.CreateGradientTwoColor(namesColors["jaune-clair"], namesColors["green"]));
+        temp2Gradients.Add("Sun5", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["green"]));
+        temp2Gradients.Add("Sun6", gradientCreator.CreateGradientTwoColor(namesColors["jaune-clair"], namesColors["green"]));
+        temp2Gradients.Add("Sun7", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["green"]));
+        temp2Gradients.Add("Sun8", gradientCreator.CreateGradientTwoColor(namesColors["jaune-clair"], namesColors["green"]));
+        gradientsConfig.Add("jaune-vert", temp2Gradients);
+
+
+        Dictionary<string, Gradient> temp3 = new Dictionary<string, Gradient>();
+        temp3.Add("Sun1", gradientCreator.CreateGradientTwoColor(namesColors["blue"], namesColors["white"]));
+        temp3.Add("Sun2", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["rose"]));
+        temp3.Add("Sun3", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["blue"]));
+        temp3.Add("Sun4", gradientCreator.CreateGradientTwoColor(namesColors["blue"], namesColors["white"]));
+        temp3.Add("Sun5", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["red"]));
+        temp3.Add("Sun6", gradientCreator.CreateGradientTwoColor(namesColors["blue"], namesColors["blue"]));
+        temp3.Add("Sun7", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["blue"]));
+        temp3.Add("Sun8", gradientCreator.CreateGradientTwoColor(namesColors["blue"], namesColors["white"]));
+        gradientsConfig.Add("blueSombre", temp3);
+
+
         Dictionary<string, Gradient> tempGradients = new Dictionary<string, Gradient>();
         tempGradients.Add("Sun1", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["white"]));
         tempGradients.Add("Sun2", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["rose"]));
@@ -71,7 +98,9 @@ public class ColorsManager : MonoBehaviour {
         tempGradients.Add("Sun6", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["blue"]));
         tempGradients.Add("Sun7", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["rose"]));
         tempGradients.Add("Sun8", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["white"]));
-        gradientsConfig.Add("Conf1", tempGradients);
+        gradientsConfig.Add("Bleu-Rose", tempGradients);
+
+
     }
 
 
@@ -116,8 +145,6 @@ public class ColorsManager : MonoBehaviour {
     {
 
         string selectedConfig = dropdownConfig.options[dropdownConfig.value].text;
-        Debug.Log("fsadfsa" + selectedConfig);
-
 
         foreach (var sg in gradientsConfig[selectedConfig])
         {
