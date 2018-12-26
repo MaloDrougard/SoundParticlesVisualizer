@@ -12,46 +12,74 @@ public class ColorsManager : MonoBehaviour {
     
     public Dictionary<string, Color> namesColors = new Dictionary<string, Color>();
 
-    public ColorPanel globalColorPanel;
+    public ColorPanel globalColorPanel; // for the two manual colors (gradient)
+
+    public UnityEngine.UI.Dropdown dropdownConfig; 
 
     public GradientCreator gradientCreator = new GradientCreator();
 
 
-
-    void InitGradientsConfig()
+    void InitColorPanel() // set names to colors
     {
-        Dictionary<string, Gradient> tempGradients = new Dictionary<string, Gradient>();
-        tempGradients.Add("Sun1", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["green"]));
-        tempGradients.Add("Sun2", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["green"]));
-        tempGradients.Add("Sun3", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["green"]));
-        tempGradients.Add("Sun4", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["green"]));
-        tempGradients.Add("Sun5", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["blue"]));
-        tempGradients.Add("Sun6", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["blue"]));
-        tempGradients.Add("Sun7", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["blue"]));
-        tempGradients.Add("Sun8", gradientCreator.CreateGradientTwoColor(namesColors["red"], namesColors["blue"]));
-        gradientsConfig.Add("Conf1", tempGradients);
+        Color newColor = new Color();
+
+
+        ColorUtility.TryParseHtmlString("#fd218e", out newColor);
+        namesColors.Add("rose", newColor);
+
+        namesColors.Add("red", Color.red);
+        namesColors.Add("magenta", Color.magenta);
+
+        ColorUtility.TryParseHtmlString("#fff3af", out newColor);
+        namesColors.Add("jaune-clair", newColor);
+
+        namesColors.Add("yellow", Color.yellow);
+
+        ColorUtility.TryParseHtmlString("#ff9933", out newColor);
+        namesColors.Add("orange", newColor);
+
+
+        namesColors.Add("blue", Color.blue);
+
+        ColorUtility.TryParseHtmlString("#4a4aff", out newColor);
+        ColorUtility.TryParseHtmlString("#5bc7ff", out newColor); 
+        namesColors.Add("bleu-clair", newColor); 
+
+        namesColors.Add("cyan", Color.cyan);
+
+
+        namesColors.Add("green", Color.green);
+        namesColors.Add("white", Color.white);
+
+
+        ColorUtility.TryParseHtmlString("#b3ffd9", out newColor);
+        namesColors.Add("vertClair", newColor);
+
 
 
     }
 
 
+    void InitGradientsConfig()
+    {
+        Dictionary<string, Gradient> tempGradients = new Dictionary<string, Gradient>();
+        tempGradients.Add("Sun1", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["white"]));
+        tempGradients.Add("Sun2", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["rose"]));
+        tempGradients.Add("Sun3", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["rose"]));
+        tempGradients.Add("Sun4", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["white"]));
+        tempGradients.Add("Sun5", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["blue"]));
+        tempGradients.Add("Sun6", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["blue"]));
+        tempGradients.Add("Sun7", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["rose"]));
+        tempGradients.Add("Sun8", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["white"]));
+        gradientsConfig.Add("Conf1", tempGradients);
+    }
+
+
+
     // Use this for initialization
     void Start () {
-        Color newColor = new Color();
 
-        namesColors.Add("red", Color.red);
-        namesColors.Add("magenta", Color.magenta);
-        namesColors.Add("blue", Color.blue);
-        namesColors.Add("cyan", Color.cyan);
-        namesColors.Add("yellow", Color.yellow);
-        namesColors.Add("green", Color.green);
-        namesColors.Add("white", Color.white);
-
-        ColorUtility.TryParseHtmlString("#b3ffd9", out newColor);
-        namesColors.Add("vertClair", newColor);
-        
-        ColorUtility.TryParseHtmlString("#ff9933", out newColor);
-        namesColors.Add("orange", newColor);
+        InitColorPanel(); 
 
         InitGradientsConfig(); 
 
@@ -76,12 +104,25 @@ public class ColorsManager : MonoBehaviour {
 
         globalColorPanel.dropColorA.AddOptions(new List<string>(namesColors.Keys)) ;
         globalColorPanel.dropColorB.AddOptions(new List<string>(namesColors.Keys));
+
+        dropdownConfig.ClearOptions();
+        dropdownConfig.AddOptions(new List<string>(gradientsConfig.Keys)); 
+      
     }
     
 
 
-    public void SetConfig1()
+    public void SetConfig()
     {
+
+        string selectedConfig = dropdownConfig.options[dropdownConfig.value].text;
+        Debug.Log("fsadfsa" + selectedConfig);
+
+
+        foreach (var sg in gradientsConfig[selectedConfig])
+        {
+            sunsSystems[sg.Key].ChangeColor(sg.Value);
+        }
 
     }
 
@@ -101,11 +142,14 @@ public class ColorsManager : MonoBehaviour {
 
     public void ResetInitialColor()
     {
-        foreach (var p in sunsSystems.Values)
-        {
+       foreach (var p in sunsSystems.Values)
+       {
             p.ResetInitialColor();
-        }
+       }
     }
+
+
+   
 
 
 
