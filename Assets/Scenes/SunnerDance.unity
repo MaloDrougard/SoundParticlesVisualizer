@@ -2326,7 +2326,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.0471976
+      scalar: -0.34906584
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -8017,7 +8017,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.17453292
+      scalar: 0.6981317
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -11450,8 +11450,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 19cc2a85146daad4dac94447484db0cf, type: 2}
-  - {fileID: 2100000, guid: 19cc2a85146daad4dac94447484db0cf, type: 2}
+  - {fileID: 2100000, guid: 9aede25828320f549af9d39c2718e2a4, type: 2}
+  - {fileID: 2100000, guid: 9aede25828320f549af9d39c2718e2a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12640,7 +12640,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -1.0471976
+      scalar: 0.34906584
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -16175,8 +16175,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 47b2eaa38efc39245950d8755a6317e1, type: 2}
-  - {fileID: 2100000, guid: 47b2eaa38efc39245950d8755a6317e1, type: 2}
+  - {fileID: 2100000, guid: 3a902549ffff7af4e95440f3a01a5719, type: 2}
+  - {fileID: 2100000, guid: 3a902549ffff7af4e95440f3a01a5719, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16713,8 +16713,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: efbc55934921f454ca691e113ce57042, type: 2}
-  - {fileID: 2100000, guid: efbc55934921f454ca691e113ce57042, type: 2}
+  - {fileID: 2100000, guid: a19702c20678ca045a9c0bbcdf7b5023, type: 2}
+  - {fileID: 2100000, guid: a19702c20678ca045a9c0bbcdf7b5023, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17850,7 +17850,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5707963
+      scalar: 1.0471976
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -21816,7 +21816,7 @@ MonoBehaviour:
   particles: {fileID: 836056654}
   velocityFactor: 9
   emissionFactor: 9
-  sizeFactor: 13
+  sizeFactor: 12
 --- !u!199 &836056653
 ParticleSystemRenderer:
   serializedVersion: 5
@@ -21834,8 +21834,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: dec99eb2e1805e04e93b561cac8b1ca9, type: 2}
-  - {fileID: 2100000, guid: dec99eb2e1805e04e93b561cac8b1ca9, type: 2}
+  - {fileID: 2100000, guid: 8016cd523f4cf1442b921e45bfe98013, type: 2}
+  - {fileID: 2100000, guid: 8016cd523f4cf1442b921e45bfe98013, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23024,7 +23024,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.052359875
+      scalar: -0.34906584
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -23074,7 +23074,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    separateAxes: 1
+    separateAxes: 0
   ColorModule:
     enabled: 1
     gradient:
@@ -27422,8 +27422,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 1564f4e404a109d47b6f87f71b84fcb7, type: 2}
-  - {fileID: 2100000, guid: 1564f4e404a109d47b6f87f71b84fcb7, type: 2}
+  - {fileID: 2100000, guid: 005664c7ff7bcbe46a9fcc91b67f38e0, type: 2}
+  - {fileID: 2100000, guid: 005664c7ff7bcbe46a9fcc91b67f38e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28612,7 +28612,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2268928
+      scalar: -0.34906584
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -32757,8 +32757,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 47b2eaa38efc39245950d8755a6317e1, type: 2}
-  - {fileID: 2100000, guid: 47b2eaa38efc39245950d8755a6317e1, type: 2}
+  - {fileID: 2100000, guid: c6b988db50b03a14ca49b41961f83807, type: 2}
+  - {fileID: 2100000, guid: c6b988db50b03a14ca49b41961f83807, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33947,7 +33947,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.15707964
+      scalar: 0.6981317
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -38699,8 +38699,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 3cdd9245a6535764897ef4aef114fc72, type: 2}
-  - {fileID: 2100000, guid: 3cdd9245a6535764897ef4aef114fc72, type: 2}
+  - {fileID: 2100000, guid: 19cc2a85146daad4dac94447484db0cf, type: 2}
+  - {fileID: 2100000, guid: 19cc2a85146daad4dac94447484db0cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -39889,7 +39889,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.34906584
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -39939,7 +39939,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    separateAxes: 1
+    separateAxes: 0
   ColorModule:
     enabled: 1
     gradient:
