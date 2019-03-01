@@ -55,7 +55,7 @@ public static class Settings {
    public static Vector3 centerP = (sun1P + sun4P + sun5P + sun8P )/4;
     
     static float defaultStarringTime = 0;
-    static float defaultTransitionTime = 6;
+    static float defaultTransitionTime = 13;
 
     public static List<AutoCameraShot> camShots = new List<AutoCameraShot>()
     {
@@ -97,7 +97,7 @@ public static class Settings {
         //new TransitionShot(defaultTransitionTime),
 
 
-        
+
 
         //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
         //new TransitionShot(defaultTransitionTime),
@@ -112,7 +112,7 @@ public static class Settings {
 
         //new PositionShot(sun6P + new Vector3(0,0,-60) , sun6P + new Vector3(0,0,60), defaultStarringTime),
         //new TransitionShot(defaultTransitionTime),
-        
+
         //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), 20),
         //new TransitionShot(defaultTransitionTime),
 
@@ -164,34 +164,41 @@ public static class Settings {
         //new PositionShot(centerP + new Vector3(0,0,-300) , centerP + new Vector3(0,0,60), defaultStarringTime),
         //new TransitionShot(defaultTransitionTime),
 
-        new PositionShot(sun4P + new Vector3(0,0,0), sun3P + new Vector3(0,0,0), defaultStarringTime),
+        new PositionShot(sun1P + new Vector3(-250,0,0), sun1P + new Vector3(-600,0,0), defaultStarringTime),
+        new TransitionShot(0),    // come out of the dark 
+        new PositionShot(sun1P + new Vector3(-15,0,0), sun1P + new Vector3(-100,0,0), defaultStarringTime),
         new TransitionShot(defaultTransitionTime),
-
-        new PositionShot(sun3P + new Vector3(0,0,0), sun2P + new Vector3(0,0,0), defaultStarringTime),
+        new PositionShot(sun1P + new Vector3(25,0,0), sun1P + new Vector3(-100,0,0), defaultStarringTime),
         new TransitionShot(defaultTransitionTime),
-
-
-        new PositionShot(sun2P + new Vector3(0,0,0), sun1P + new Vector3(0,0,0), defaultStarringTime),
+        new PositionShot(sun2P + new Vector3(25,0,0), sun1P + new Vector3(0,0,0), defaultStarringTime),
         new TransitionShot(defaultTransitionTime),
-
-        // transaction for corner
-        new PositionShot(sun1P + new Vector3(0,0,0), sun1P + new Vector3(-10,0,0), defaultStarringTime),
+        new PositionShot(sun3P + new Vector3(25,0,0), sun2P + new Vector3(0,0,0), defaultStarringTime),
+        new TransitionShot(defaultTransitionTime),
+        new PositionShot(sun4P + new Vector3(35,0,0), sun3P + new Vector3(0,0,0), defaultStarringTime),
+        new TransitionShot(1), // go in the dark 
+        new PositionShot(sun4P + new Vector3(200,0,0), sun4P + new Vector3(0,0,0), defaultStarringTime),
         new TransitionShot(0),
-        
+        // seconde row
 
-        new PositionShot(sun5P + new Vector3(0,0,0), sun6P + new Vector3(0,0,0), defaultStarringTime),
+        new PositionShot(sun5P + new Vector3(-250,0,0), sun5P + new Vector3(-600,0,0), defaultStarringTime),
+        new TransitionShot(0),    // come out of the dark 
+        new PositionShot(sun5P + new Vector3(-15,0,0), sun5P + new Vector3(-100,0,0), defaultStarringTime),
         new TransitionShot(defaultTransitionTime),
-        
-
-        new PositionShot(sun6P + new Vector3(0,0,0), sun7P + new Vector3(0,0,0), defaultStarringTime),
+        new PositionShot(sun5P + new Vector3(25,0,0), sun5P + new Vector3(-100,0,0), defaultStarringTime),
         new TransitionShot(defaultTransitionTime),
-
-        new PositionShot(sun7P + new Vector3(0,0,0), sun8P + new Vector3(0,0,0), defaultStarringTime),
+        new PositionShot(sun6P + new Vector3(25,0,0), sun5P + new Vector3(0,0,0), defaultStarringTime),
         new TransitionShot(defaultTransitionTime),
+        new PositionShot(sun7P + new Vector3(25,0,0), sun6P + new Vector3(0,0,0), defaultStarringTime),
+        new TransitionShot(defaultTransitionTime),
+        new PositionShot(sun8P + new Vector3(35,0,0), sun7P + new Vector3(0,0,0), defaultStarringTime),
+        new TransitionShot(1), // go in the dark 
+        new PositionShot(sun8P + new Vector3(550,0,0), sun8P + new Vector3(0,0,0), defaultStarringTime),
+        new TransitionShot(0),   
+       
 
-        
-        new PositionShot(sun8P + new Vector3(0,0,0), sun8P + new Vector3(10,0,0), defaultStarringTime),
-        new TransitionShot(0),
+       
+
+     
 
 
     };
