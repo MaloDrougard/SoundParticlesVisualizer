@@ -8,9 +8,9 @@ The produces video stream can be control by some parameters.
 So the application needs two screens, one for the controlled panel and one for the video output.
 
 
-![soundVisualizerImg](https://github.com/MaloDrougard/SoundParticlesVisualizer/Doc/Img/soundVizualizer-videoOutput.png)
+![soundVisualizerImg](https://github.com/MaloDrougard/SoundParticlesVisualizer/blob/master/Doc/Img/soundVisulatizer-videoOutput.png)
 Video output example
 
-![soundVisualizerImg](https://github.com/MaloDrougard/SoundParticlesVisualizer/Doc/Img/soundVisualizer-controls.png)
+![soundVisualizerImg](https://github.com/MaloDrougard/SoundParticlesVisualizer/blob/master/Doc/Img/soundVisualizer-controls.png)
 Control panel screenshot
 
