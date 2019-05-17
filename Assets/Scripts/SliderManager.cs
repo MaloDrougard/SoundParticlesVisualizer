@@ -20,24 +20,28 @@ public class SliderManager : MonoBehaviour {
     public Dictionary<string, SlidersConfig> configs = new Dictionary<string, SlidersConfig>();
 
     InputField saveConfigNameInput;
-    Dropdown loadConfigDropdown; 
+    Dropdown loadConfigDropdown;
 
+    string dataPath; 
 
     // Use this for initialization
     void Start() {
-        Debug.LogWarning("slfdafdfasdfdsfsd");
+
+        sliders = new List<Slider>(FindObjectsOfType<Slider>());
+        toggles = new List<Toggle>(FindObjectsOfType<Toggle>());
+
+        saveConfigNameInput = GameObject.Find("InputFieldSaveSlidersConfig").GetComponent<InputField>();
+        loadConfigDropdown = GameObject.Find("DropdownLoadSlidersConfig").GetComponent<Dropdown>();
+
+        dataPath = Path.Combine(Application.persistentDataPath, "SlidersConfigs.txt");
+        Debug.LogWarning(dataPath); 
 
 
         SlidersConfig initConfig = new SlidersConfig();
         initConfig.configName = "init";
         initConfig.slidersValue = new List<float>() { 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, };
         configs.Add(initConfig.configName, initConfig);
-
-        sliders = new List<Slider>(FindObjectsOfType<Slider>());
-        toggles = new List<Toggle>(FindObjectsOfType<Toggle>());
-
-        saveConfigNameInput = GameObject.Find("InputFieldSaveSlidersConfig").GetComponent<InputField>();
-        loadConfigDropdown = GameObject.Find("DropdownLoadSlidersConfig").GetComponent<Dropdown>(); 
+        SetLoadDropDown();
 
         SetConfig("init");
     }
@@ -60,14 +64,12 @@ public class SliderManager : MonoBehaviour {
         for (int i = 0; i < sliders.Count; i++)
         {
             sliders[i].value = config.slidersValue[i];
-        }
+        }  
     }
 
     public void SaveConfig()
     {
-        Debug.LogWarning(saveConfigNameInput.text);
-        SaveConfig(saveConfigNameInput.text); 
-        
+        SaveConfig(saveConfigNameInput.text);    
     }
 
     public void SaveConfig(string name)
@@ -82,6 +84,45 @@ public class SliderManager : MonoBehaviour {
         SetLoadDropDown(); // to update the display; 
     }
 
+    public void SaveOnDisk()
+    {
+        
+        SlidersConfigJsonWrapper configWrapper = new SlidersConfigJsonWrapper();
+        configWrapper.configs = new SlidersConfig[configs.Count];
+        int i = 0; 
+        foreach (string configName in configs.Keys)
+        {
+            configWrapper.configs[i] = configs[configName];
+            i++;     
+        }
+      
+        string jsonString = JsonUtility.ToJson(configWrapper);
+        Debug.LogWarning(jsonString);
+        using (StreamWriter streamWriter = File.CreateText(dataPath))
+        {
+            streamWriter.Write(jsonString);
+        }
+    }
+
+    public void LoadFromDisk()
+    {
+
+        SlidersConfigJsonWrapper configWrapper;
+        using (StreamReader streamReader = File.OpenText(dataPath))
+        {
+            string jsonString = streamReader.ReadToEnd();
+            configWrapper = JsonUtility.FromJson<SlidersConfigJsonWrapper>(jsonString);
+        }
+
+        configs.Clear(); 
+        for(int i = 0; i < configWrapper.configs.Length; i++)
+        {
+            SlidersConfig config = configWrapper.configs[i];
+            configs.Add(config.configName, config);
+        }
+        SetLoadDropDown();    
+    }
+   
 }
 
 
@@ -93,4 +134,12 @@ public class SlidersConfig
     public string configName = "notSet"; 
     public List<float> slidersValue = new List<float>();
     public List<bool> togglesValue = new List<bool>(); 
+}
+
+
+// Used to be able to save easly the data in json
+[Serializable]
+public class SlidersConfigJsonWrapper
+{
+    public SlidersConfig[] configs; 
 }
