@@ -40,10 +40,11 @@ public class SliderManager : MonoBehaviour {
         SlidersConfig initConfig = new SlidersConfig();
         initConfig.configName = "init";
         initConfig.slidersValue = new List<float>() { 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, 0.8f, };
+        initConfig.togglesValue = new List<bool>() {true, true, true };
         configs.Add(initConfig.configName, initConfig);
         SetLoadDropDown();
 
-        SetConfig("init");
+        LoadConfig("init");
     }
 
     public void SetLoadDropDown()
@@ -55,16 +56,20 @@ public class SliderManager : MonoBehaviour {
     public void LoadConfig()
     {
         string name = loadConfigDropdown.options[loadConfigDropdown.value].text; ;
-        SetConfig(name);
+        LoadConfig(name);
     }
 
-    public void SetConfig(string name)
+    public void LoadConfig(string name)
     {
         SlidersConfig config = configs[name];
         for (int i = 0; i < sliders.Count; i++)
         {
             sliders[i].value = config.slidersValue[i];
         }  
+        for (int i = 0; i < toggles.Count; i++)
+        {
+            toggles[i].isOn = config.togglesValue[i];
+        }
     }
 
     public void SaveConfig()
@@ -79,6 +84,10 @@ public class SliderManager : MonoBehaviour {
         for (int i = 0; i < sliders.Count; i++)
         {
             newConfig.slidersValue.Add(sliders[i].value);
+        }
+        for (int i = 0; i < toggles.Count; i++)
+        {
+            newConfig.togglesValue.Add(toggles[i].isOn);
         }
         configs.Add(newConfig.configName, newConfig);
         SetLoadDropDown(); // to update the display; 
