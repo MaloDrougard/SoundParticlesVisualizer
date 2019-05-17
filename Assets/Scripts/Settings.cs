@@ -195,12 +195,6 @@ public static class Settings {
         new PositionShot(sun8P + new Vector3(550,0,0), sun8P + new Vector3(0,0,0), defaultStarringTime),
         new TransitionShot(0),   
        
-
-       
-
-     
-
-
     };
 
 
