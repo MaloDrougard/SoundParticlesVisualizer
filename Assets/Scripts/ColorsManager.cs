@@ -112,20 +112,6 @@ public class ColorsManager : MonoBehaviour {
         tempGradients.Add("Sun8", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["white"]));
         gradientsConfig.Add("Bleu-Rose", tempGradients);
 
-
-
-        Dictionary<string, Gradient> temp4Gradients = new Dictionary<string, Gradient>();
-        temp4Gradients.Add("Sun1", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["white"]));
-        temp4Gradients.Add("Sun2", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["rose"]));
-        temp4Gradients.Add("Sun3", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["rose"]));
-        temp4Gradients.Add("Sun4", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["white"]));
-        temp4Gradients.Add("Sun5", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["blue"]));
-        temp4Gradients.Add("Sun6", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["blue"]));
-        temp4Gradients.Add("Sun7", gradientCreator.CreateGradientTwoColor(namesColors["rose"], namesColors["rose"]));
-        temp4Gradients.Add("Sun8", gradientCreator.CreateGradientTwoColor(namesColors["bleu-clair"], namesColors["white"]));
-        gradientsConfig.Add("Red-Red", temp4Gradients);
-
-
     }
 
 

@@ -1,6 +1,7 @@
 ## Lüterne show application
 
-**See the application in use: https://www.youtube.com/watch?v=E549XDdgT9A**
+![soundVisualizerImg](https://github.com/MaloDrougard/SoundParticlesVisualizer/blob/master/Doc/Img/luterne-vernissage-bikini.jpg)
+The application in use :)
 
 This application is part of the light show for the surf rock music band Lüterne.
 Basically, the application analyses the audio stream given by a microphone and produce a video stream.
